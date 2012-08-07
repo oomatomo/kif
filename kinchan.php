@@ -4,7 +4,7 @@
     <meta http-equiv="content-style-type" content="text/css" charset="utf-8">
     <meta http-equiv="content-script-type" content="text/javascript" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./kinchan.css" charset="utf-8">
-    <script src="../jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
 $(function(){

@@ -3,9 +3,9 @@
  <meta charset="utf-8"/>
  <meta http-equiv="content-style-type" content="text/css" charset="utf-8">
  <meta http-equiv="content-script-type" content="text/javascript" charset="utf-8">
- <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css"> 
+ <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css"> 
  <link rel="stylesheet" type="text/css" href="./kinchan_input.css">
- <script src="../jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+ <script src="./jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
  <title>きんちゃんシステム</title>
  </head>
  <script type="text/javascript">
