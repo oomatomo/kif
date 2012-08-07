@@ -2,7 +2,7 @@
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
 
-mysql_connect("localhost","root","root");
+mysql_connect("localhost","kin","kin");
 mysql_select_db("sse-test");
 
 echo 'retry:1000'.PHP_EOL.PHP_EOL;

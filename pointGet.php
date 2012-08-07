@@ -14,7 +14,7 @@
   $point = mb_convert_encoding($point,"EUC-JP","UTF-8");
   
   //DB設定  
-  mysql_connect("localhost","root","root");
+  mysql_connect("localhost","kin","kin");
 
   // DBを選択する
   mysql_select_db("sse-test");
