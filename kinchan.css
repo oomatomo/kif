@@ -1,0 +1,132 @@
+@font-face {
+	font-family: "corki";
+	src:local("corki") url("../font/Corki_Rounded_Tuscan.otf") format("truetype");
+	src:local("corki") url("../font/Corki_Rounded.otf") format("truetype");
+	src:local("corki") url("../font/Corki_Tuscan.otf") format("truetype");
+	src:local("corki") url("../font/Corki.otf") format("truetype");
+	
+}
+
+body{
+	text-align:center;
+	font-family: "corki";
+	color:#EF4943;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* background */
+img.bg
+{
+	/* Set rules to fill background */
+	min-height: 100%;
+	min-width: 1024px;
+	/* Set up proportionate scaling */
+	width: 100%;
+	height: auto;
+	/* Set up positioning */
+	position: fixed;
+	/* またはabsolute; */
+	top: 0;
+	left: 0;
+}
+
+@media screen and (max-width: 1024px){
+	img.bg {
+    	left: 50%;
+  		margin-left: -512px; 
+	}
+}
+
+div#container {
+    position: relative; 
+}
+
+
+
+/* 得点のテーブル*/
+table
+{
+/*	text-align:right;*/
+	width:80%;
+	margin-left:auto;
+}
+
+ul#point {
+	list-style: none;
+	width:40%;
+	margin:auto;
+	/*height:80%;
+	/*margin:10%;*/
+}
+
+ul#point li {
+	/*float: left;*/
+	margin-top: 2px;
+    text-align: center;
+	font-size:2em;
+}
+
+
+/*
+ul.user{
+	
+}
+ul.user li{
+	float:left;
+	width:50px;
+}
+*/
+
+/*得点の部分 */
+.def
+{
+	height: 25px;
+	margin-top: 2px;
+	padding:2px;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.gray
+{
+	/* Mozilla Firefox */ 
+	background-image: -moz-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #D6D5D6 100%);
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #FFFFFF), color-stop(1, #D6D5D6));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #FFFFFF 0%, #D6D5D6 100%);
+}
+
+.yellow{
+	/*background: #FFFFFF;*/
+	/* Mozilla Firefox */ 
+	background-image: -moz-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #EFEA60 100%);
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #FFFFFF), color-stop(1, #EFEA60));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #FFFFFF 0%, #EFEA60 100%);
+
+}
+.orenge{
+	/* Mozilla Firefox */ 
+	background-image: -moz-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #FF9933 100%);
+	/* Opera */ 
+	background-image: -o-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #FF9933 100%);
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(radial, center center, 0, center center, 140, color-stop(0, #FFFFFF), color-stop(1, #FF9933));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #FF9933 100%);
+	/*background: #FFFFFF;*/
+}
+.red{
+	/*background: #FFFFFF;*/
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #FFFFFF), color-stop(1, #EF5858));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #FFFFFF 0%, #EF5858 100%);
+
+}
+
