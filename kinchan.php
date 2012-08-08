@@ -11,8 +11,8 @@ $(function(){
 	
 	var sumPoint = 0;
 	var befPoint = sumPoint;
-	var deferred=$.Deferred();
 	
+	var timer ;
 	//ユーザ表示
 	function UserPointAdd(use)
 	{
@@ -25,50 +25,61 @@ $(function(){
 			}
 		}
 	}
-
+	
+	function reset()
+	{
+		//$("[name=tp]").each(function(){$(this).text("0点");});
+		$('li').each(function(){$(this).children().removeClass("yellow orenge red")});
+		befPoint = 0;
+	}
+	
 	//１秒ごとにチェック
-	setInterval(function()
-		{	
-		    if( befPoint < sumPoint){
-				var nowPoint = befPoint + 1;
-				if(nowPoint < 10){
-					$('#l'+ nowPoint).children().addClass("yellow");
-				}else if (nowPoint < 15){
-					$('#l'+ nowPoint).children().addClass("orenge");
-				}else{
-					$('#l'+ nowPoint).children().addClass("red");
-				}
-				$("#sum").text(nowPoint+"点");
-				befPoint++;
-		    }  
-		    else if(sumPoint==0)
-		    { 
-				$("[name=tp]").each(function(){$(this).text("0点");});
-				$('li').each(function(){$(this).children().removeClass("yellow orenge red")});
-				befPoint = 0;
-		    }
-		    $("#sum").text(sumPoint+"点");
-		    
-		},500);
+	function setPoint()
+	{	
+	    if( befPoint < sumPoint){
+			var nowPoint = befPoint + 1;
+			if(nowPoint < 10){
+				$('#l'+ nowPoint).children().addClass("yellow");
+			}else if (nowPoint < 15){
+				$('#l'+ nowPoint).children().addClass("orenge");
+			}else{
+				$('#l'+ nowPoint).children().addClass("red");
+			}
+			$("#sum").text(nowPoint+"点");
+			befPoint++;
+	    }  
+	    else if(sumPoint==0)
+	    {
+			reset();
+	    }
+	}
+
+	// １秒ごと	
+	timer = setInterval(setPoint,1000);
 	
 	function SumPointRemove()
 	{
 		$("[name=tp]").each(function(){$(this).text("0点");});
 		$('li').each(function(){$(this).children().removeClass("yellow orenge red")});
 	}
-		
+	
+	//
+	// SSE
+	//
 	var sse1 =new EventSource("./dataKin.php");
 	
 	sse1.onmessage = function(ev){
 		ev.data.split('\n').join('');
 		var use=JSON.parse(ev.data);
 		sumPoint=use.sum;
-		
 		if(sumPoint >= befPoint){
 			//UserPointAdd(use);
 		}
 	}
 	
+	//
+	//init
+	//
 	$('li ').each(function(){ 
 		$(this).children().addClass("def");
 		$(this).children().addClass("gray");
@@ -92,9 +103,11 @@ $(function(){
 	<img class="bg" src="./kin.png" alt="" />
 	<div id="container"> 
 	 <table > 
+	 <!--
 	 <tr style="font-size:3em;"><th style="text-align:right;"></th>
 	 <th>POINT</th>
 	 </tr>
+	 -->
 	 <tr>
 	   <td></td>
 	   <td width="80%">

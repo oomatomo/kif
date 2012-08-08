@@ -45,7 +45,7 @@
 	   
 	    if(user === "" || point === "")
 	    {
-	    	return;
+	    	return alert("名前もしくは点数を選択してください。");
 	    }
 	    //データ送信
 	    $.ajax({
@@ -62,9 +62,7 @@
 	});
 
 	function point_get(){
-	    
 	    var flag = $("[name='point']").hasClass("btn-primary");
-	    
 	    //点数を選択済みかチェック
 	    if(flag)
 	    {
@@ -75,7 +73,7 @@
 	    	}
 	    }
 
-	    return ;
+	    return "";
 	}
 	
   });
@@ -86,11 +84,7 @@
    <!-- ヘッダー -->
    <div class="navbar navbar-fixed-top">
      <div class="navbar-inner">
-       <div class="container">
-        <div class="nav-collapse collapse">
 		<div class="header_title" >投票画面</div>
-		</div>
-       </div>
      </div>
    </div>
   
