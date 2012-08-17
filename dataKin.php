@@ -32,7 +32,7 @@ if (mysql_num_rows($rs)) {
 
 echo 'data: "sum":'.$sum.' }'.PHP_EOL.PHP_EOL;
 
-
 ob_flush();
 flush();
+
 ?>

@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
 <html>
  <head>
  <meta charset="utf-8"/>
@@ -6,6 +7,7 @@
  <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css"> 
  <link rel="stylesheet" type="text/css" href="./kinchan_input.css">
  <script src="./jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+ <script src="./jquery/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
  <title>きんちゃんシステム</title>
  </head>
  <script type="text/javascript">
@@ -55,7 +57,7 @@
 		    "user":user,"point":point
 		}
 		,success:function(ret){
-		    $("#test").text(ret); 
+			//cookieにtabの情報を選択
 		}
 	    });
 
@@ -80,44 +82,40 @@
  </script>
 
  <body>
-
    <!-- ヘッダー -->
    <div class="navbar navbar-fixed-top">
      <div class="navbar-inner">
 		<div class="header_title" >投票画面</div>
      </div>
    </div>
-  
   <!--コンテンツ --> 
    <div class="content">
      <!--　名前スペース -->
      <div id="name">
-     	 <div id="name_label"></div>
+     	 <div id="name_label" style="padding-top:20px;display:none;" ></div>
          <input id="name_text" type="text" />
      </div><br/> 
      <button id="name_set" class="btn btn-primary btn-large" >登録</button>
-     
-     <!-- タブ
-     <ul class="nav nav-tabs">
-        <li><a id="tab" href="#test" data-toggle="tab">test</a></li>
-        <li><a id="tab2" href="#test2" data-toggle="tab">test2</a></li>
-     </ul>
-     -->
     <br><br>
-    <div class="addPoint">
-      <div >得点を選択してください</div>
-      <br>
-      <input type="button" id="p0" name="point" class="btn" value="0点" />
-      <input type="button" id="p1" name="point" class="btn" value="1点" />
-      <input type="button" id="p2" name="point" class="btn" value="2点" />
-      <input type="button" id="p3" name="point" class="btn" value="3点" />
-      <input type="button" id="p4" name="point" class="btn" value="4点" />
-      <br><br>
-      <button id="submit" class="btn btn-success btn-large" >送信</button>
-      <br><br>
-      <div id="error"></div>
-    <div>
-    
+	<div class="arrow_box">
+    	<div class="grade">	
+    		<input type="button" id="p0" name="point" class="btn" value="0点" />
+    		<input type="button" id="p1" name="point" class="btn" value="1点" />
+    		<input type="button" id="p2" name="point" class="btn" value="2点" />
+			<input type="button" id="p3" name="point" class="btn" value="3点" />
+    		<input type="button" id="p4" name="point" class="btn" value="4点" />
+    		<br/>
+			<button id="submit" class="btn btn-success btn-large" >送信</button>
+    	</div>
+		<div class="tab" width="100%" >
+			<ul >
+				<li>test</li>
+				<li>test</li>
+				<li>test</li>
+				<li>test</li>
+			</ul>
+		</div>
+	</div> 
   </div>
  </body>
 

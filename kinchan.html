@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
     <meta charset="utf-8">
@@ -5,98 +6,8 @@
     <meta http-equiv="content-script-type" content="text/javascript" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./kinchan.css" charset="utf-8">
     <script src="./jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./kinchan.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript">
-$(function(){
-	
-	var sumPoint = 0;
-	var befPoint = sumPoint;
-	
-	var timer ;
-	//ユーザ表示
-	function UserPointAdd(use)
-	{
-		for(var j=0;j<use.user.length;j++){
-			var user=use.user[j].name;
-			var point=use.user[j].point;
-			$('#'+user+'p').text(point+"点");
-			for(var i=0;i<=point;i++){
-				$('#'+user+'l'+i).children().addClass("orenge");
-			}
-		}
-	}
-	
-	function reset()
-	{
-		//$("[name=tp]").each(function(){$(this).text("0点");});
-		$('li').each(function(){$(this).children().removeClass("yellow orenge red")});
-		befPoint = 0;
-	}
-	
-	//１秒ごとにチェック
-	function setPoint()
-	{	
-	    if( befPoint < sumPoint){
-			var nowPoint = befPoint + 1;
-			if(nowPoint < 10){
-				$('#l'+ nowPoint).children().addClass("yellow");
-			}else if (nowPoint < 15){
-				$('#l'+ nowPoint).children().addClass("orenge");
-			}else{
-				$('#l'+ nowPoint).children().addClass("red");
-			}
-			$("#sum").text(nowPoint+"点");
-			befPoint++;
-	    }  
-	    else if(sumPoint==0)
-	    {
-			reset();
-	    }
-	}
-
-	// １秒ごと	
-	timer = setInterval(setPoint,1000);
-	
-	function SumPointRemove()
-	{
-		$("[name=tp]").each(function(){$(this).text("0点");});
-		$('li').each(function(){$(this).children().removeClass("yellow orenge red")});
-	}
-	
-	//
-	// SSE
-	//
-	var sse1 =new EventSource("./dataKin.php");
-	
-	sse1.onmessage = function(ev){
-		ev.data.split('\n').join('');
-		var use=JSON.parse(ev.data);
-		sumPoint=use.sum;
-		if(sumPoint >= befPoint){
-			//UserPointAdd(use);
-		}
-	}
-	
-	//
-	//init
-	//
-	$('li ').each(function(){ 
-		$(this).children().addClass("def");
-		$(this).children().addClass("gray");
-	});
-
-	/*
-	$('#usershow').click(function(){
-		var result = $(".test").is(':visible');
-		if(result){
-			$(".test").fadeOut("slow");
-		}else{
-			$(".test").fadeIn("slow");
-		}
-	});
-	*/
-});
-</script>
 <title>採点</title>
 </head>
 <body>
@@ -109,7 +20,10 @@ $(function(){
 	 </tr>
 	 -->
 	 <tr>
-	   <td></td>
+	   <td>
+		<div class="sum"></div>
+		<div class="user"></div>
+	   </td>
 	   <td width="80%">
 		<ul id='point'>
 		<li id='l20' ><div>20</div></li>

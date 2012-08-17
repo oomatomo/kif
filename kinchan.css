@@ -113,7 +113,6 @@ ul.user li{
 	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0,#efe813), color-stop(1, #EFEA60));
 	/* Webkit (Chrome 11+) */ 
 	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #efe813 0%, #EFEA60 100%);
-
 	color:#000000;
 }
 .orenge{
@@ -139,5 +138,9 @@ ul.user li{
 	/* Webkit (Chrome 11+) */ 
 	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #FFFFFF 0%, #EF5858 100%);
 	color:#000000;
+}
+
+.sum{
+	font-size:5em;	
 }
 
