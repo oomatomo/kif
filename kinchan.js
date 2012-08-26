@@ -39,7 +39,7 @@ $(function(){
 				$('#l'+ nowPoint).children().addClass("yellow");
 			}else if (nowPoint < 15){
 				$("body").append('<embed id="point" src="./bgm/point2.wav" autostart="true" hidden="true" loop="false">');
-				$('#l'+ nowPoint).children().addClass("orenge");
+				$('#l'+ nowPoint).children().addClass("yellow");
 				clearInterval(timer);
 				timer = setInterval(setPoint,700);
 			}else{
@@ -56,11 +56,11 @@ $(function(){
 			reset();
 	    }
 
+		//result
 		if(befPoint == sumPoint && sumPoint != 0 )
 		{
 			count++;
 		}
-
 		if(count == 4 )
 		{
 			countPoint = sumPoint;
@@ -87,7 +87,7 @@ $(function(){
 			setTimeout(function(){
 				timer = setInterval(setPoint,400);
 				},
-				2500);
+				1500);
 			//init 解放
 			clearInterval(init);
 		}
@@ -113,6 +113,7 @@ $(function(){
 		if(sumPoint >= befPoint){
 			//UserPointAdd(use);
 		}
+		
 	}
 	
 	//
