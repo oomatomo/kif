@@ -55,8 +55,8 @@ $(function(){
 		,success:function(ret){
 			//cookieにtabの情報
 			$.cookie(category,true);
-			$(".poll"),fadeOut();
-
+			$(".poll").fadeOut();
+			$(".result").fadeIn();
 		}
 	    });
 
@@ -111,19 +111,19 @@ $(function(){
 		$(".box_header").text("No."+number);
 
 		var exitCheck = $.cookie(number);
-		
-		$(".poll").fadeOut();
-
+			
 		if(exitCheck)
 		{
-			
+			$(".poll").css("display","none");
+			$(".result").fadeIn();	
 		}
 		else
 		{
+			$(".result").css("display","none");
 			$(".poll").fadeIn();
 		}
-	});
 
+	});
 	
 
   });

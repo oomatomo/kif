@@ -26,20 +26,23 @@
      	 <div id="name_label" style="padding-top:20px;display:none;" ></div>
          <input id="name_text" type="text" />
      </div><br/> 
-     <button id="name_set" class="btn btn-primary btn-large" >登録</button>
+     <span id="name_set" class="btn btn-primary btn-large" >登録</span>
     <br><br>
 	<div class="box">
 		<div class="box_header">No</div>
-    	<div class="poll">	
-    		<ul class="pointtable">	
+    	<div class="point">
+		<div class="poll">	
+    		<ul class="pointtable" style="text-align:center">	
 				<li><input type="button" id="p0" name="point" class="btn" value="0点" /></li>
     			<li><input type="button" id="p1" name="point" class="btn" value="1点" /></li>
-    			<li><input type="button" id="p2" name="point" class="btn" value="2点" /></li>
+    			<li style="clear:both"><input type="button" id="p2" name="point" class="btn" value="2点" /></li>
 				<li><input type="button" id="p3" name="point" class="btn" value="3点" /></li>
     			<li><input type="button" id="p4" name="point" class="btn" value="4点" /></li>
     		</ul>
-			<button id="submit" class="btn btn-success btn-large" >GO!</button>
+			<span id="submit" class="btn btn-success btn-large" ><i class="icon-upload"></i>GO!</span>
     	</div>
+			<div class="result" >Thanks!!</div>
+		</div>
 		<div class="tab" >
 			<ul class="tablist">
 				<li id="t1">1</li>

@@ -82,9 +82,17 @@ input[type="text"]:focus
 	width:100%;
 }
 /*--------point-----------------*/
-.poll
+.point
 {
-	height:180px;
+	height:200px;
+}
+.result
+{
+	font-family:"corki";
+	font-size:3em;
+	font-weight:"bold";
+	padding-top:80px;
+	display:none;
 }
 ul.pointtable
 {
@@ -97,14 +105,14 @@ ul.pointtable
 ul.pointtable li
 {
 	float:left;
-	margin: 20px 0 20px 0;
+	margin:0 20px;
 	width:20%;
 }
 
 input[type="button"]
 {
 	padding:10px;
-	font-size:1.2em;
+	font-size:1.5em;
 	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
 	border-radius:60px;	
 }

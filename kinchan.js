@@ -109,7 +109,15 @@ $(function(){
 	sse1.onmessage = function(ev){
 		ev.data.split('\n').join('');
 		var use=JSON.parse(ev.data);
-		sumPoint=use.sum;
+		
+		if(use.sum <=20)
+		{
+			sumPoint=use.sum;
+		}
+		else
+		{
+			sumPoint=20;
+		}
 		if(sumPoint >= befPoint){
 			//UserPointAdd(use);
 		}
