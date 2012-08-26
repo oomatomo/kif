@@ -84,11 +84,11 @@ $(function(){
 		//要素数
 		var index = $(this).index();		
 
-		if(index % 4 == 0)
+		/*if(index % 4 == 0)
 		{
 			$(this).css("clear","both");
 		}
-
+		*/
 		if(index == 0)
 		{
 			$(".box_header").text("No.1");
