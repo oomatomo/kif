@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8"/>
+ <meta http-equiv="content-style-type" content="text/css" charset="utf-8">
+ <meta http-equiv="content-script-type" content="text/javascript" charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css"> 
+ <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap-responsive.min.css"> 
+ <link rel="stylesheet" type="text/css" href="./index.css">
+ <script src="./jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+ <script src="./jquery/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+ <script src="./index.js" type="text/javascript" charset="utf-8"></script>
+ <title>きんちゃんシステム</title>
+ </head>
+ <body>
+   <!-- ヘッダー -->
+   <div class="navbar navbar-fixed-top">
+     <div class="navbar-inner">
+		<div class="header_title" >投票画面</div>
+     </div>
+   </div>
+  <!--コンテンツ --> 
+   <div class="content container">
+     <!--　名前スペース -->
+     <div id="name">
+     	 <div id="name_label" style="padding-top:20px;display:none;" ></div>
+         <input id="name_text" type="text" />
+     </div><br/> 
+     <button id="name_set" class="btn btn-primary btn-large" >登録</button>
+    <br><br>
+	<div class="box">
+		<div class="box_header">No</div>
+    	<div class="poll">	
+    		<ul class="pointtable">	
+				<li><input type="button" id="p0" name="point" class="btn" value="0点" /></li>
+    			<li><input type="button" id="p1" name="point" class="btn" value="1点" /></li>
+    			<li><input type="button" id="p2" name="point" class="btn" value="2点" /></li>
+				<li><input type="button" id="p3" name="point" class="btn" value="3点" /></li>
+    			<li><input type="button" id="p4" name="point" class="btn" value="4点" /></li>
+    		</ul>
+			<button id="submit" class="btn btn-success btn-large" >GO!</button>
+    	</div>
+		<div class="tab" >
+			<ul class="tablist">
+				<li id="t1">1</li>
+				<li id="t2">2</li>
+				<li id="t3">3</li>
+				<li id="t4">4</li>
+				<li id="t5">5</li>
+				<li id="t6">6</li>
+				<li id="t7">7</li>
+				<li id="t8">8</li>
+			</ul>
+		</div>
+	</div> 
+  </div>
+ </body>
+
+
+</html>
