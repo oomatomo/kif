@@ -125,6 +125,14 @@ $(function(){
 	}
 	
 	//
+	//timer
+	//
+	$('time').each(function(){
+		
+
+	});
+
+	//
 	//init
 	//
 	$('li ').each(function(){ 
@@ -142,5 +150,6 @@ $(function(){
 		}
 	});
 	*/
+
 });
 

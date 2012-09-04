@@ -9,7 +9,7 @@
 
 body{
 	text-align:center;
-	font-family: "corki";
+	/*font-family: "corki";*/
 	color:#EF4943;
 	margin-left:auto;
 	margin-right:auto;
@@ -38,53 +38,48 @@ img.bg
 	}
 }
 
+.header_title
+{
+	padding:15px 20px 12px;
+	text-align:center;
+	font-size:3em;
+}
+
 div#container {
     position: relative; 
 }
 
-
-
-/* 得点のテーブル*/
-table
+.time
 {
-/*	text-align:right;*/
-	width:80%;
-	margin-left:auto;
+	display:none;
+	margin:5px;
+	color:#000000;
+	font-size:3em;
 }
 
+/* 得点のテーブル*/
 ul#point {
 	list-style: none;
-	width:160px;
+	width:100%;
 	margin:auto;
 	/*height:80%;
 	/*margin:10%;*/
 	background-color:#abd6e0;
-	padding-top:5px;
-	padding-bottom:5px;
-	border-radius:15px;
+	background-color:#EFA907;
+	padding-top:4px;
+	padding-bottom:4px;
+	border-radius:5px;
 }
 
 ul#point li {
 	/*float: left;*/
     text-align: center;
-	font-size:1.5em;
+	font-size:1.5em !important;
 }
-
-/*
-ul.user{
-	
-}
-ul.user li{
-	float:left;
-	width:50px;
-}
-*/
 
 /*得点の部分 */
 .def
 {
-	height: 25px;
-	width:100px;
 	margin-top:1px;
 	padding-top:4px;
 	text-align: center;
@@ -107,24 +102,17 @@ ul.user li{
 
 .yellow{
 	/*background: #FFFFFF;*/
-	/* Mozilla Firefox */ 
+	/* Mozilla Firefox / 
 	background-image: -moz-radial-gradient(center, ellipse closest-side, #efe813 0%, #EFEA60 100%);
-	/* Webkit (Safari/Chrome 10) */ 
+	/* Webkit (Safari/Chrome 10) / 
 	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0,#efe813), color-stop(1, #EFEA60));
-	/* Webkit (Chrome 11+) */ 
+	/* Webkit (Chrome 11+) / 
 	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #efe813 0%, #EFEA60 100%);
-	color:#000000;
-}
-.orenge{
-	/* Mozilla Firefox */ 
-	background-image: -moz-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #FF9933 100%);
-	/* Opera */ 
-	background-image: -o-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #FF9933 100%);
+	*/
 	/* Webkit (Safari/Chrome 10) */ 
-	background-image: -webkit-gradient(radial, center center, 0, center center, 140, color-stop(0, #FFFFFF), color-stop(1, #FF9933));
+	background-image: -webkit-gradient(radial, center center, 0, center center, 448, color-stop(0, #EFC34A), color-stop(1, #FFFAB8));
 	/* Webkit (Chrome 11+) */ 
-	background-image: -webkit-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #FF9933 100%);
-	/*background: #FFFFFF;*/
+	background-image: -webkit-radial-gradient(center, ellipse closest-corner, #EFC34A 0%, #FFFAB8 100%);
 	color:#000000;
 }
 .red{
