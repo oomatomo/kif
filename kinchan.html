@@ -22,16 +22,22 @@
   	<!--コンテンツ --> 
 	<div id="container">
 		<div class="container-fluid">	
-			<div class="row-fluid" style="font-size:2em">
-				<div class="span4" >審査員</div>
-				<div class="offset4" >会場</div>
+			<div class="row-fluid">
+				<select class="content"></select>	
 			</div>
 			<div class="row-fluid">
 			<!--審査員 -->
 			<div class="span6">
 				<div class="row-fluid">
+					<div class="title">審査員</div>
+				</div>
+				<div class="row-fluid">
 				<div class="span6">
-					<div class="judgePoint">
+					<div class="judgeSum">
+					得点
+					</div>
+					<div class="judgeList">
+					 リスト
 					</div>
 				</div>
 				<div class="span3">
@@ -63,10 +69,14 @@
 			<!--会場 -->
 			<div class="span6">
 				<div class="row-fluid">
+					<div class="title">会場</div>
+				</div>
+				<div class="row-fluid">
 				<div class="span6">
-					<div class="row">
-						<div class="time">10:00</div>
-						<button class="btn-primary" id="watch" type="button">start</button>	
+					<div class="time"></div>
+					<button class="btn btn-primary" id="start" type="button">start</button>	
+					<div class="placeSum">
+						得点
 					</div>
 				</div>
 				<div class="span3">

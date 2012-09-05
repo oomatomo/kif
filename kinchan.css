@@ -1,4 +1,5 @@
-@font-face {
+@font-face 
+{
 	font-family: "corki";
 	src:local("corki") url("./font/Corki_Rounded_Tuscan.otf") format("truetype");
 	src:local("corki") url("./font/Corki_Rounded.otf") format("truetype");
@@ -7,7 +8,8 @@
 	
 }
 
-body{
+body
+{
 	text-align:center;
 	/*font-family: "corki";*/
 	color:#EF4943;
@@ -31,7 +33,8 @@ img.bg
 	left: 0;
 }
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px)
+{
 	img.bg {
     	left: 50%;
   		margin-left: -512px; 
@@ -45,20 +48,30 @@ img.bg
 	font-size:3em;
 }
 
-div#container {
+div#container 
+{
     position: relative; 
+}
+
+.title
+{
+	font-size:3em;
+	padding:5% 0;
+	overflow:hidden;
 }
 
 .time
 {
 	display:none;
-	margin:5px;
+	padding:10%;
 	color:#000000;
-	font-size:3em;
+	font-size:5em;
+	font-weight:bolder;
 }
 
 /* 得点のテーブル*/
-ul#point {
+ul#point 
+{
 	list-style: none;
 	width:100%;
 	margin:auto;
@@ -71,7 +84,8 @@ ul#point {
 	border-radius:5px;
 }
 
-ul#point li {
+ul#point li 
+{
 	/*float: left;*/
     text-align: center;
 	font-size:1.5em !important;

@@ -26,24 +26,33 @@ $(function(){
 		befPoint = 0;
 	}
 	
+	function setBGM(var file)
+	{
+		$("embed #point").remove();
+		$("body").append('<embed id="point" src="./bgm/'+file+'.wav" autostart="true" hidden="true" loop="false">');
+	}
+	
 	//１秒ごとにチェック
 	function setPoint()
 	{	
-	    if( befPoint < sumPoint){
+	    if( befPoint < sumPoint)
+		{
 			var nowPoint = befPoint + 1;
 			
-			$("embed #point").remove();
-			
-			if(nowPoint < 10){
-				$("body").append('<embed id="point" src="./bgm/point1.wav" autostart="true" hidden="true" loop="false">');
+			if(nowPoint < 10)
+			{
+				setBGM("point1");
 				$('#l'+ nowPoint).children().addClass("yellow");
-			}else if (nowPoint < 15){
-				$("body").append('<embed id="point" src="./bgm/point2.wav" autostart="true" hidden="true" loop="false">');
+			}
+			else if (nowPoint < 15)
+			{
+				setBGM("point2");
 				$('#l'+ nowPoint).children().addClass("yellow");
 				clearInterval(timer);
 				timer = setInterval(setPoint,700);
-			}else{
-				$("body").append('<embed id="point" src="./bgm/point1.wav" autostart="true" hidden="true" loop="false">');
+			}
+			else
+			{
 				$('#l'+ nowPoint).children().addClass("red");
 				clearInterval(timer);
 				timer = setInterval(setPoint,900);
@@ -127,19 +136,62 @@ $(function(){
 	//
 	//timer
 	//
-	$('time').each(function(){
-		
-
+	var targetTime;
+	var countInterval;
+	$('#start').click(function(){
+		$(this).hide("slow");
+		var dd = new Date();
+		dd.setSeconds(dd.getSeconds()+45);
+		targetTime =dd.getTime(); 
+		countInterval =  setInterval(function() {
+			getCountTime();
+		}, 200);
+		$(".time").show("slow");
 	});
 
+	function getCountTime(){
+		var dd = new Date().getTime();
+		if(dd > targetTime){
+			stopCountTime();
+			return;
+		}
+		var countTime = (dd - targetTime) / 1000; 
+		var myMS = -(Math.floor(countTime%1000));   
+		$('.time').text(myMS);	
+	}
+
+	function stopCountTime(){
+		$(".time").text("End");
+		$("#start").show("slow");
+		clearInterval(countInterval);
+	}
 	//
 	//init
 	//
+	
+	//点数の初期設定
 	$('li ').each(function(){ 
 		$(this).children().addClass("def");
 		$(this).children().addClass("gray");
 	});
 
+	//カテゴリセレクトボックス
+	function initSelect(){
+		$.ajax({
+			type:"GET",
+			dataType: "json",
+	        url: "./Content.php",
+	        success: function(data) {
+				var dt =data;
+				for(var i =0 ; i<dt.length ; i++ ){
+					//IE error
+					$('select.content').append($('<option>').attr({ value:dt[i].number }).text(dt[i].number +"-"+dt[i].content));	
+				}
+			}
+		});
+	}
+	 
+	initSelect();
 	/*
 	$('#usershow').click(function(){
 		var result = $(".test").is(':visible');
