@@ -42,9 +42,7 @@ if (mysql_num_rows($rs)) {
     } 
 }
 
-//倍率
-$scale = $sum*($count/5);
-echo 'data: "sum":"'.$scale.'" }'.PHP_EOL.PHP_EOL;
+echo 'data: "sum":'.$sum.',"cnt":'.$count.' }'.PHP_EOL.PHP_EOL;
 
 ob_flush();
 flush();

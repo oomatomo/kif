@@ -1,25 +1,33 @@
 $(function(){
  
  	//名前セット
- 	$("#name_set").click(function(){
+ 	$("#name_set").click(function()
+ 	{
 	    var btnStatus = $(this).text();
-	    if(btnStatus === "登録"){
+	    
+	    if(btnStatus === "submit")
+	    {
 	        var name = $("#name_text").val();
 	        if(name === "") return;
-	        $("#name_text").fadeOut().promise().done(function(){
-	     		$("#name_label").text("名前：" + name).fadeIn();
+	        $("#name_text").fadeOut().promise().done(function()
+	        {
+	     		$("#name_label").text("Name：" + name).fadeIn();
 			});
-	        $(this).text("変更");
-	    }else{
-	        $("#name_label").fadeOut().promise().done(function(){
+	        $(this).text("change");
+	    }
+	    else
+	    {
+	        $("#name_label").fadeOut().promise().done(function()
+	        {
 	     		$("#name_text").fadeIn();
 			});
-		$(this).text("登録");
+		$(this).text("submit");
 	    }
 	});
 
 	//得点の受信
-	$("[name='point']").click(function(){
+	$("[name='point']").click(function()
+	{
 	    
 		var existiCheck = $(this).hasClass("btn-primary");
 
@@ -48,11 +56,13 @@ $(function(){
 		//データ送信
 	    $.ajax({
 		type:"POST",
-		url:"./pointGet.php",
-		data:{
+		url:"./server/pointGet.php",
+		data:
+		{
 		    "user":user,"point":point,"category":category
 		}
-		,success:function(ret){
+		,success:function(ret)
+		{
 			//cookieにtabの情報
 			$.cookie(category,true);
 			$(".poll").fadeOut();
@@ -62,7 +72,8 @@ $(function(){
 
 	});
 
-	function point_get(){
+	function point_get()
+	{
 	    var flag = $("[name='point']").hasClass("btn-primary");
 	    //点数を選択済みかチェック
 	    if(flag)
@@ -80,7 +91,8 @@ $(function(){
 	//tab 選択時のクラス
 	var tabclass = "selected";
 	
-	$(".tablist li").each(function(){
+	$(".tablist li").each(function()
+	{
 		//要素数
 		var index = $(this).index();		
 
@@ -96,12 +108,14 @@ $(function(){
 		}
 	});	
 
-	$(".tablist li").bind("click",function(){
+	$(".tablist li").bind("click",function()
+	{
 		var check = $(this).hasClass(tabclass);
 		
 		if(check) return;
 		
-		$(".tablist li").each(function(){
+		$(".tablist li").each(function()
+		{
 	        $(this).removeClass(tabclass);
 	    });
 		

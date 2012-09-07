@@ -1,4 +1,6 @@
 <?php
+	//header
+	header("Content-Type: text/html; charset=UTF-8");
 	//DB設定  
   	mysql_connect("localhost","kin","kin");
   	// DBを選択する
