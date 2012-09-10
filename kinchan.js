@@ -6,10 +6,11 @@ $(function(){
 		this.currentPoint =0;	//描画完了の得点
 		this.countPoint = 0;	//得点の変化をチェックする
 		this.count=0;			//得点変化なしの時間
-		this.targetId =target;	//描画対象の要素
+		this.targetPoint =target+"Point";	//描画対象の要素
+		this.targetSum=target+"Sum";	//合計得点
 		this.bgmfile = "point1";//BGMファイル
 		this.resultFlag = false;//結果のフラグ
-		this.settime = 400;		//インターバルの時間
+		this.settime = 500;		//インターバルの時間
 		this.color = "yellow";	//得点のカラー					
 		//
 		//得点管理
@@ -76,7 +77,7 @@ $(function(){
 			var i = this.currentPoint;
 			for(; i > this.sumPoint ; i--)
 			{
-				$('ul#'+ this.targetId +' li#l'+i).children().removeClass("yellow red");
+				$('ul#'+ this.targetPoint +' li#l'+i).children().removeClass("yellow red");
 			}
 			this.currentPoint =i;
 		}
@@ -85,7 +86,7 @@ $(function(){
 		//
 		this.resetPoint = function()
 		{
-			$('ul#'+ this.targetId +' li').each(function(){
+			$('ul#'+ this.targetPoint +' li').each(function(){
 				$(this).children().removeClass("yellow red");
 				$(this).children().addClass("def");
 				$(this).children().addClass("gray");
@@ -96,7 +97,7 @@ $(function(){
 		//
 		this.setColor = function()
 		{
-			$('ul#'+ this.targetId +' li#l' + this.currentPoint).children().addClass(this.color);
+			$('ul#'+ this.targetPoint +' li#l' + this.currentPoint).children().addClass(this.color);
 		}		
 		//
 		//result処理
@@ -128,15 +129,15 @@ $(function(){
 		//
 		this.playBGM=function()
 		{				
-			$("embed #point").remove();
-			$("body").append('<embed id="point" src="./bgm/'+this.bgmfile+'.wav" autostart="true" hidden="true" loop="false">');
+			$("embed#point"+ (this.currentPoint-2)).remove();
+			$("body").append('<embed id="point'+this.currentPoint+'" src="./bgm/'+this.bgmfile+'.wav" autostart="true" hidden="true" loop="false">');
 		},
 		//
 		//結果BGMをならす
 		//
 		this.playResultBGM = function()
 		{
-			$("embed #point").remove();
+			$("embed#result").remove();
 			$("body").append('<embed id="result" src="./bgm/ok.wav" autostart="true" hidden="true" loop="false">');			
 		},
 		//
@@ -144,14 +145,15 @@ $(function(){
 		//
 		this.resetAll = function()
 		{			
-			this.resetPoint();	
+			this.resetPoint();
+			$("."+this.targetSum).text("0点");
 		}
 	}
 
 	//--------------------------------------------------
 	//会場用
 	//
-	var AudiencePoint = new Point("audiencePoint");
+	var AudiencePoint = new Point("audience");
 	var setAudience;
 	var initAudience;
 	//
@@ -191,9 +193,9 @@ $(function(){
 	//--------------------------------------------------
 	//審査員
 	//
-	var AudiencePoint = new Point("audiencePoint");
-	var setAudience;
-	var initAudience;
+	var JudgePoint = new Point("judge");
+	var setJudge;
+	var initJudge;
 	
 	//
 	//
@@ -249,7 +251,7 @@ $(function(){
 		//SSE
 		startSseAudience();
 		//カウントダウン
-		$(this).hide("slow");
+		//$(this).hide("slow");
 		var dd = new Date();
 		dd.setSeconds(dd.getSeconds()+45);
 		targetTime =dd.getTime(); 
@@ -257,7 +259,7 @@ $(function(){
 		{
 			getCountTime();
 		}, 100);
-		$(".time").show("slow");
+		//$(".time").show("slow");
 				
 	});
 
@@ -277,6 +279,7 @@ $(function(){
 	function stopCountTime(){
 		$('.time').text("00:0");	
 		$("#start").show("slow");
+		AudiencePoint.reset();
 		sseAudience.close();
 		clearInterval(countInterval);
 	}
@@ -329,6 +332,7 @@ $(function(){
 		    success:function(data)
 		    {
 			    AudiencePoint.resetAll();
+			    
 			    AudiencePoint = new Point("audiencePoint");
 		    }
 	    });

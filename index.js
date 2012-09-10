@@ -52,23 +52,30 @@ $(function(){
 	    {
 	    	return alert("名前もしくは点数を選択してください。");
 	    }
+		
+		$(".poll").fadeOut().promise().then(function(){
+			$(".loader").fadeIn();
+			//データ送信
+		    $.ajax({
+				type:"POST",
+				url:"./server/pointGet.php",
+				data:
+				{
+				    "user":user,"point":point,"category":category
+				},
+				success:function(ret)
+				{
+					//cookieにtabの情報
+					$.cookie(category,true);
+					//結果表示
+					$(".loader").fadeOut().promise().then(function(){
+						$(".result").fadeIn();
+					});
+				},
+		    });
+
+		});
 	    
-		//データ送信
-	    $.ajax({
-		type:"POST",
-		url:"./server/pointGet.php",
-		data:
-		{
-		    "user":user,"point":point,"category":category
-		}
-		,success:function(ret)
-		{
-			//cookieにtabの情報
-			$.cookie(category,true);
-			$(".poll").fadeOut();
-			$(".result").fadeIn();
-		}
-	    });
 
 	});
 

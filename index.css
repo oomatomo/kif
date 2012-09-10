@@ -82,9 +82,18 @@ input[type="text"]:focus
 	width:100%;
 }
 /*--------point-----------------*/
+.poll
+{
+	min-height: 200px;
+	
+}
 .point
 {
-	height:200px;
+	margin: 3%;
+}
+.loader
+{
+	display:none;
 }
 .result
 {
@@ -120,15 +129,21 @@ input[type="button"]
 #submit
 {
 	margin:20px 0 30px 0;
+	
 }
 
 /*--------tab------------------*/
+.tab
+{
+	padding: 10px 0;
+}
 
 ul.tablist
 {
 	list-style:none;
 	overflow:hidden;
 }
+
 ul.tablist li
 {
 	float:left;
