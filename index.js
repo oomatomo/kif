@@ -138,7 +138,8 @@ $(function(){
         slider_point.text("2点");
         //スマフォ＆＆PCの場合のクリックタッチイベント
         var ua = navigator.userAgent;
-        if(ua.indexOf("iPhone") > 0 || ua.indexOf("Android") > 0){
+	var isTouch = ('ontouchstart' in window);
+        if(ua.indexOf("iPhone") > -1 || ua.indexOf("Android") > -1){
             var start = "touchstart";
             var move  = "touchmove";
             var end   = "touchend";
@@ -154,9 +155,9 @@ $(function(){
 
         //スライダーボタンのクリックイベント
         slider_btn.bind(start,slideStart);
-        $("body").bind(move, slideMove);
-        $("body").bind(end, slideEnd);
-        /*
+        $(".poll").bind(move, slideMove);
+        $(".poll").bind(end, slideEnd);
+	/*
         slider.add(".slider_down,.slider_up").bind("click", function(e) {
             dragging = true;
             slideMove(e);
@@ -193,5 +194,41 @@ $(function(){
         	if(dragging) dragging = false;
         }    
     }
+
+	$('.slider_btn').bind({
+                 
+    /* タッチの開始、マウスボタンを押したとき */
+    'touchstart mousedown': function(e) {
+                 e.preventDefault();
+                          
+                     // 開始位置 X,Y 座標を覚えておく
+          this.pageX = (isTouch ? event.changedTouches[0].pageX : e.pageX);
+                                                          this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
+                                                        
+                                                                          this.left = $(this).position().left;
+                                                                                  this.top = $(this).position().top;
+                                                                                                           this.touched = true;
+                                                                                                              },
+                                                                                                                        'touchmove mousemove': function(e) {
+                                                                                                                                 
+                                                                                                                                                         if (!this.touched) {
+                                                                                                                                                                     return;
+                                                                                                                                                                             }
+                                                                                                                                                                                   
+                                                                                                                                                                                                      e.preventDefault();
+                                                                                                                                                                                                               
+                                                                                                                                                                                                                               this.left = this.left - (this.pageX - (isTouch ? event.changedTouches[0].pageX : e.pageX) );
+                                                                                                                                                                                                                                       this.top = this.top - (this.pageY - (isTouch ? event.changedTouches[0].pageY : e.pageY) );
+                                                                                                                                                                                                                                                        $(this).css({left:this.left, top:this.top});
+                                                                                                                                                                                                                                                                               this.pageX = (isTouch ? event.changedTouches[0].pageX : e.pageX);
+                                                                                                                                                                                                                                                                this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
+                                                                                                                                                                                                                                                                              },
+                                                                                                                                                                                                                                                                          'touchend mouseup': function(e) {
+                                                                                                                                                                                                                                                                                                             if (!this.touched) {
+                                                                                                                                                                                                                                                                                      return;
+                                                                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                                                                                                          this.touched = false;
+                                                                                                                                                                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                                                                                                                                                             });
 });
 
