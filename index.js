@@ -210,8 +210,6 @@ $(function(){
                  this.touched = true;
 
         },
-    });
-	$('.poll').bind({
                  
 		/* タッチの開始、マウスボタンを押したとき */
 		'touchstart mousedown': function(e) {
