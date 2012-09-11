@@ -111,13 +111,14 @@ $(function(){
 	
 	//スライダー
 	$("body").live("pageshow",setSlider());
+
 	
 	function setSlider(){
 		//スライダー関係のオブジェクト
-        var slider = $(".slider_bar");
-        var slider_point  = $(".slider_point");
-        var slider_submit = $("#slider_submit");
 		//得点の高さ
+	    var slider = $(".slider_bar");
+	    var slider_point  = $(".slider_point");
+	    var slider_submit = $("#slider_submit");
         var poll_height = $(".poll").height();
         slider_point.css("padding-top",poll_height/2 +"px");
         slider_submit.css("margin-top",poll_height/2 +"px");
@@ -136,9 +137,8 @@ $(function(){
         // 初期位置
         slider_btn.css("top", (height - top) * 0.5 + top + "px");
         slider_point.text("2点");
-        //スマフォ＆＆PCの場合のクリックタッチイベント
+        /*スマフォ＆＆PCの場合のクリックタッチイベント
         var ua = navigator.userAgent;
-	var isTouch = ('ontouchstart' in window);
         if(ua.indexOf("iPhone") > -1 || ua.indexOf("Android") > -1){
             var start = "touchstart";
             var move  = "touchmove";
@@ -171,7 +171,8 @@ $(function(){
         function slideMove(e) {
             if(dragging){
                 e.preventDefault();
-                if(!e.pageY) e = e.touches[0];
+                if(!e.pageY) //e = e.touches[0];
+                e.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
                 //現在のY座標
                 var y = e.pageY -( slider.offset().top + size / 2 );
                 if(y < top)
@@ -195,40 +196,77 @@ $(function(){
         }    
     }
 
+	var isTouch = ('ontouchstart' in window);
+    var dragging = false;
 	$('.slider_btn').bind({
                  
-    /* タッチの開始、マウスボタンを押したとき */
-    'touchstart mousedown': function(e) {
+		/* タッチの開始、マウスボタンを押したとき */
+		'touchstart mousedown': function(e) {
                  e.preventDefault();
                           
-                     // 開始位置 X,Y 座標を覚えておく
-          this.pageX = (isTouch ? event.changedTouches[0].pageX : e.pageX);
-                                                          this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
-                                                        
-                                                                          this.left = $(this).position().left;
-                                                                                  this.top = $(this).position().top;
-                                                                                                           this.touched = true;
-                                                                                                              },
-                                                                                                                        'touchmove mousemove': function(e) {
-                                                                                                                                 
-                                                                                                                                                         if (!this.touched) {
-                                                                                                                                                                     return;
-                                                                                                                                                                             }
-                                                                                                                                                                                   
-                                                                                                                                                                                                      e.preventDefault();
-                                                                                                                                                                                                               
-                                                                                                                                                                                                                               this.left = this.left - (this.pageX - (isTouch ? event.changedTouches[0].pageX : e.pageX) );
-                                                                                                                                                                                                                                       this.top = this.top - (this.pageY - (isTouch ? event.changedTouches[0].pageY : e.pageY) );
-                                                                                                                                                                                                                                                        $(this).css({left:this.left, top:this.top});
-                                                                                                                                                                                                                                                                               this.pageX = (isTouch ? event.changedTouches[0].pageX : e.pageX);
-                                                                                                                                                                                                                                                                this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
-                                                                                                                                                                                                                                                                              },
-                                                                                                                                                                                                                                                                          'touchend mouseup': function(e) {
-                                                                                                                                                                                                                                                                                                             if (!this.touched) {
-                                                                                                                                                                                                                                                                                      return;
-                                                                                                                                                                                                                                                                                                                          }
-                                                                                                                                                                                                                                                                                                                                                          this.touched = false;
-                                                                                                                                                                                                                                                                                                                                                                                              }
-                                                                                                                                                                                                                                                                                                                                                                                             });
-});
+                 // 開始位置 X,Y 座標を覚えておく
+                 this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
+                 //タッチフラグ                                     
+                 this.touched = true;
+
+        },
+    });
+	$('.poll').bind({
+                 
+		/* タッチの開始、マウスボタンを押したとき */
+		'touchstart mousedown': function(e) {
+                 e.preventDefault();
+                          
+                 // 開始位置 X,Y 座標を覚えておく
+                 this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
+                 //タッチフラグ                                     
+                 this.touched = true;
+
+        },
+        
+        'touchmove mousemove': function(e) {
+			if (!this.touched) {
+            	return;
+            }
+                e.preventDefault();
+                //if(!e.pageY) e = e.touches[0];
+			    var slider = $(".slider_bar");
+			    var slider_point  = $(".slider_point");
+			    var slider_submit = $("#slider_submit");
+			    //スライダーのボタン
+			    var slider_btn = slider.find(".slider_btn");
+			    //ボタンの高さ
+			    var size = slider_btn.height();
+			    //スライダーのトップ　ボタンの半分が基準になる
+			    var top = - size / 2;
+			    //スライダーのボトム　
+			    var height = slider.height() + top ;
+        
+                e.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
+                //現在のY座標
+                var y = e.pageY -( slider.offset().top + size / 2 );
+                if(y < top)
+                { 
+                	y = top;
+                }
+                else if(y > height)
+                {
+                	y = height;
+	            }
+                //input.css("top", y + "px");
+                slider_btn.get(0).style.top = y + "px";
+                value = 100 - Math.floor(100 * (y - top) / (height - top));
+                value = Math.round(value / 25);
+                slider_point.text(value+"点");                
+		},
+		
+		'touchend mouseup': function(e){
+			if (!this.touched) {
+            	return;
+            }         
+            // タッチ処理は終了したため、フラグをたたむ
+            this.touched = false;		
+        },
+	});
+});						
 
