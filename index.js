@@ -112,6 +112,9 @@ $(function(){
 	//スライダー
 	$("body").live("pageshow",setSlider());
 
+	$( window ).resize(function(){
+	/* 行ないたい処理 */
+	});
 	
 	function setSlider(){
 		//スライダー関係のオブジェクト
@@ -120,8 +123,8 @@ $(function(){
 	    var slider_point  = $(".slider_point");
 	    var slider_submit = $("#slider_submit");
         var poll_height = $(".poll").height();
-        slider_point.css("padding-top",poll_height/2 +"px");
-        slider_submit.css("margin-top",poll_height/2 +"px");
+        slider_point.css("margin",poll_height/10 +"px 0");
+        slider_submit.css("margin",poll_height/10+"px 0");
 
         //高さ調整
         slider.height(poll_height);
@@ -137,80 +140,14 @@ $(function(){
         // 初期位置
         slider_btn.css("top", (height - top) * 0.5 + top + "px");
         slider_point.text("2点");
-        /*スマフォ＆＆PCの場合のクリックタッチイベント
-        var ua = navigator.userAgent;
-        if(ua.indexOf("iPhone") > -1 || ua.indexOf("Android") > -1){
-            var start = "touchstart";
-            var move  = "touchmove";
-            var end   = "touchend";
-        } else {
-            var start = "mousedown";
-            var move  = "mousemove";
-            var end   = "mouseup";
-        }
         
-        //タッチ処理
-        //タッチフラグ
-        var dragging = false;
-
-        //スライダーボタンのクリックイベント
-        slider_btn.bind(start,slideStart);
-        $(".poll").bind(move, slideMove);
-        $(".poll").bind(end, slideEnd);
-	/*
-        slider.add(".slider_down,.slider_up").bind("click", function(e) {
-            dragging = true;
-            slideMove(e);
-            dragging = false;   
-        });
-        */
-        function slideStart(e) {
-            dragging = true;
-        }
-		//動いている間の処理        
-        function slideMove(e) {
-            if(dragging){
-                e.preventDefault();
-                if(!e.pageY) //e = e.touches[0];
-                e.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
-                //現在のY座標
-                var y = e.pageY -( slider.offset().top + size / 2 );
-                if(y < top)
-                { 
-                	y = top;
-                }
-                else if(y > height)
-                {
-                	y = height;
-	            }
-                //input.css("top", y + "px");
-                slider_btn.get(0).style.top = y + "px";
-                value = 100 - Math.floor(100 * (y - top) / (height - top));
-                value = Math.round(value / 25);
-                slider_point.text(value+"点");                
-            }
-        }
-        
-        function slideEnd(e){
-        	if(dragging) dragging = false;
-        }    
     }
-
+    
 	var isTouch = ('ontouchstart' in window);
     var dragging = false;
+    
 	$('.slider_btn').bind({
-                 
-		/* タッチの開始、マウスボタンを押したとき */
-		'touchstart mousedown': function(e) {
-                 e.preventDefault();
-                          
-                 // 開始位置 X,Y 座標を覚えておく
-                 this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
-                 //タッチフラグ                                     
-                 this.touched = true;
-
-        },
-                 
+                                  
 		/* タッチの開始、マウスボタンを押したとき */
 		'touchstart mousedown': function(e) {
                  e.preventDefault();
