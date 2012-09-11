@@ -13,7 +13,7 @@
  <body >
    <!-- ヘッダー -->
    <div class="navbar">
-     <div class="navbar-inner">
+     <div class="navbar-inner header">
 	 	<div class="container">
 			<div class="header_title" >投票画面</div>
      	</div>
@@ -21,31 +21,29 @@
    </div>
   <!--コンテンツ --> 
    <div class="content container">
-     <!--　名前スペース -->
-     <div id="name">
-     	 <div id="name_label" style="padding-top:20px;display:none;" ></div>
-         <input id="name_text" type="text" />
-     </div><br/> 
-     <span id="name_set" class="btn btn-primary btn-large" >submit</span>
-    <br><br>
 	<div class="box">
 		<div class="box_header">No</div>
     	<div class="point">
-		<div class="poll">	
-    		<ul class="pointtable" style="text-align:center">	
-				<li><input type="button" id="p0" name="point" class="btn" value="0点" /></li>
-    			<li><input type="button" id="p1" name="point" class="btn" value="1点" /></li>
-    			<li style="clear:both"><input type="button" id="p2" name="point" class="btn" value="2点" /></li>
-				<li><input type="button" id="p3" name="point" class="btn" value="3点" /></li>
-    			<li><input type="button" id="p4" name="point" class="btn" value="4点" /></li>
-    		</ul>
-			<span id="submit" class="btn btn-success btn-large" ><i class="icon-upload"></i>GO!</span>
-    	</div>
-    		<img src="./images/loader.gif" class="loader"/>
-			<div class="result" >Thanks!!</div>
+			<div class="poll  row-fluid">
+				<div class="span4">
+					<div class="slider_point"></div>
+				</div>
+				<div class="span4">
+					<div  class="slider_bar" >
+						<div class='slider_btn'></div>
+					</div>
+				</div>
+				<div class="span4">	
+					<span id="slider_submit" class="btn btn-success btn-large" ><i class="icon-upload"></i>GO!</span>
+				</div>
+			</div>
+    		<div class="loader"><img src="./images/loader.gif" id="loder_img"/></div>
+			<div class="result" >Thanks!!<br/><br/>
+				<span id="retry" class="btn btn-success btn-large" ><span class="upload"></span>もう一度</span>
+			</div>
 		</div>
 		<div class="tab" >
-			<ul class="tablist">
+			<ul class="tab_list">
 				<li id="t1">1</li>
 				<li id="t2">2</li>
 				<li id="t3">3</li>

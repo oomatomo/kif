@@ -7,8 +7,6 @@
   header("Content-Type: text/html; charset=UTF-8");
   //pear
   require_once('./JSON.php');
-  $user = $_POST['user'];
-  $user = mb_convert_encoding($user,"UTF-8");
   
   $point = $_POST['point'];
   $point = mb_convert_encoding($point,"UTF-8");
@@ -21,7 +19,7 @@
   // DBを選択する
   mysql_select_db("kif");
 
-  $sql=sprintf("insert into Kin (user,point,category) values ('%s','%d','%d')",$user,$point,$category);
+  $sql=sprintf("insert into Kin (point,category) values ('%d','%d')",$point,$category);
   $rs = mysql_query($sql);
 
 ?>

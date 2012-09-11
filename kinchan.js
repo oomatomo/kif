@@ -2,16 +2,17 @@ $(function(){
 
 	var Point =function(target){
 		//プロパティ
-		this.sumPoint = 0;		//合計得点
-		this.currentPoint =0;	//描画完了の得点
-		this.countPoint = 0;	//得点の変化をチェックする
-		this.count=0;			//得点変化なしの時間
+		this.sumPoint = 0;					//合計得点
+		this.currentPoint =0;				//描画完了の得点
+		this.countPoint = 0;				//得点の変化をチェックする
+		this.count=0;						//得点変化なしの時間
 		this.targetPoint =target+"Point";	//描画対象の要素
-		this.targetSum=target+"Sum";	//合計得点
-		this.bgmfile = "point1";//BGMファイル
-		this.resultFlag = false;//結果のフラグ
-		this.settime = 500;		//インターバルの時間
-		this.color = "yellow";	//得点のカラー					
+		this.targetSum=target+"Sum";		//合計得点
+		this.bgmfile = "p";			//ポイントBGMファイル
+		this.resultfile = "fail";			//結果BGMファイル
+		this.resultFlag = false;			//結果のフラグ
+		this.settime = 500;					//インターバルの時間
+		this.color = "yellow";				//得点のカラー					
 		//
 		//得点管理
 		//
@@ -47,30 +48,48 @@ $(function(){
 			this.checkResult();
 		},
 		//
-		//得点のアップ
+		//得点のアップ		TODO:得点の勢いを考える　ランダムに実装
 		//
 		this.upPoint = function()
 		{
-
-			this.currentPoint++;			
-			//得点に合った設定を行う			
-			if(this.currentPoint > 15)
+			var diff = this.sumPoint - this.currentPoint;
+			//現在描画しているポイント
+			this.currentPoint++;
+			var work = this.currentPoint;
+			
+			if(diff > 3)
 			{
-				this.bgmfile = "point2";
-				this.color = "red";
-				this.settime = 900;
+				//ランダムに得点の表示を決める
+				//this.currentPoint = work + Math.floor( Math.random() * diff);
+				this.settime = Math.floor( Math.random() * 600);
+				$(".test").text(this.settime);
 			}
-			else if (this.currentPoint > 10)
+			else
 			{
-				this.settime = 700;
-				//TODO:得点bgnの設定
+				if(work >=15)
+				{
+					this.settime = 900;
+				}
+				else if(work >10)
+				{
+					this.settime = 700;
+				}
+//				$(".test").text(work+"kizonn");
+			}
+
+			//速さ以外の調整			
+			if(work >=15)
+			{
+				this.resultfile = "fanfale";
+				this.color ="red";
 			}
 			
-			this.setColor();						
-			this.playBGM();		
+			$('ul#'+ this.targetPoint +' li#l' + work).children().addClass(this.color);
+			this.playBGM(work);		
+			
 		},
 		//
-		//得点ダウン
+		//得点ダウン	TODO:得点が減るときのBGM
 		//
 		this.downPoint = function()
 		{
@@ -79,7 +98,7 @@ $(function(){
 			{
 				$('ul#'+ this.targetPoint +' li#l'+i).children().removeClass("yellow red");
 			}
-			this.currentPoint =i;
+			this.currentPoint = i;
 		}
 		//
 		//得点のリセット
@@ -92,13 +111,6 @@ $(function(){
 				$(this).children().addClass("gray");
 			});
 		},
-		//
-		//カラーを表示
-		//
-		this.setColor = function()
-		{
-			$('ul#'+ this.targetPoint +' li#l' + this.currentPoint).children().addClass(this.color);
-		}		
 		//
 		//result処理
 		//
@@ -127,18 +139,17 @@ $(function(){
 		//
 		//得点BGMをならす
 		//
-		this.playBGM=function()
+		this.playBGM=function(data)
 		{				
-			$("embed#point"+ (this.currentPoint-2)).remove();
-			$("body").append('<embed id="point'+this.currentPoint+'" src="./bgm/'+this.bgmfile+'.wav" autostart="true" hidden="true" loop="false">');
+			var bgm = this.bgmfile+data;
+			$("body").append('<embed id="point" src="./bgm/'+bgm+'.wav" autostart="true" hidden="true" loop="false">');
 		},
 		//
 		//結果BGMをならす
 		//
 		this.playResultBGM = function()
 		{
-			$("embed#result").remove();
-			$("body").append('<embed id="result" src="./bgm/ok.wav" autostart="true" hidden="true" loop="false">');			
+			$("body").append('<embed id="result" src="./bgm/'+this.resultfile+'.wav" autostart="true" hidden="true" loop="false">');			
 		},
 		//
 		//すべてをリセットする
@@ -146,33 +157,48 @@ $(function(){
 		this.resetAll = function()
 		{			
 			this.resetPoint();
-			$("."+this.targetSum).text("0点");
+			$("embed#point").remove();
+			$("embed#result").remove();
+			//$("."+this.targetSum).text("0点");
 		}
 	}
 
 	//--------------------------------------------------
 	//会場用
 	//
+	//初期選択を①に設定
+	$.ajax({
+		type:"POST",
+		url:"./server/InsertContent.php",
+		data:
+		{
+		    "content":1
+	    },
+    });
+    
+    //初期化する場合は以下の３つを解放する
 	var AudiencePoint = new Point("audience");
 	var setAudience;
 	var initAudience;
+	
 	//
 	//繰り返し処理 　クラスではうまく行かなかったwhy？Interbalのときにクラス内の処理ではなくなってしまう
 	//
 	function setAudiencePoint()
 	{
-		var targetObject = AudiencePoint;	
-    	
+		var targetObject = AudiencePoint;	    	
     	//点数の判定
-		targetObject.checkPoint();
-		
+		targetObject.checkPoint();		
 		//result処理
 		clearInterval(setAudience)
 		setAudience = setInterval(setAudiencePoint,targetObject.settime);
 	}
 	
-	initAudience = setInterval(initAudiencePoint,100);
+	//initAudience = setInterval(initAudiencePoint,100);
 
+	//
+	//ポイントの有無を調べ、始めのBGMを流し、ポイントの表示用の繰り返しを行う
+	//
 	function initAudiencePoint()
 	{
 		var targetObject = AudiencePoint;
@@ -185,35 +211,11 @@ $(function(){
 			//BGM再生後ポイント追加	
 			setAudience = setInterval(function(){
 				setAudiencePoint();
-			},1500);
+			},2000);
 			clearInterval(initAudience);
 		}
 	}
 	
-	//--------------------------------------------------
-	//審査員
-	//
-	var JudgePoint = new Point("judge");
-	var setJudge;
-	var initJudge;
-	
-	//
-	//
-	//--------------------------------------------------
-	
-	//ユーザ表示
-	function UserPointAdd(use)
-	{
-		for(var j=0;j<use.user.length;j++){
-			var user=use.user[j].name;
-			var point=use.user[j].point;
-			$('#'+user+'p').text(point+"点");
-			for(var i=0;i<=point;i++){
-				$('#'+user+'l'+i).children().addClass("orenge");
-			}
-		}
-	}
-		
 	//
 	// SSE
 	//
@@ -227,62 +229,29 @@ $(function(){
 		sseAudience.onmessage = function(ev)
 		{
 			ev.data.split('\n').join('');
-			var use=JSON.parse(ev.data);
-			
-			if(use.sum <=20)
-			{	
-				//四捨五入
-				var sum = Math.round(use.sum / ( use.cnt / 5 ));
-				AudiencePoint.setSumPoint(sum);
-			}
+			var use=JSON.parse(ev.data);			
+			//四捨五入
+			var sum = Math.round(use.sum / ( use.cnt / 5 ));
+			AudiencePoint.setSumPoint(sum);
 
-			$(".audienceSum").text(use.sum+"点");
+			//$(".audienceSum").text(use.sum+"点");
 			$(".audienceCount").text(use.cnt+"人");
 		}
 	}
 	
 	//
 	//カウントダウン
-	//
+	
 	var targetTime;
 	var countInterval;
 	$('#start').click(function()
 	{
 		//SSE
+		initAudience = setInterval(initAudiencePoint,100);
 		startSseAudience();
-		//カウントダウン
-		//$(this).hide("slow");
-		var dd = new Date();
-		dd.setSeconds(dd.getSeconds()+45);
-		targetTime =dd.getTime(); 
-		countInterval =  setInterval(function()
-		{
-			getCountTime();
-		}, 100);
-		//$(".time").show("slow");
 				
 	});
 
-	function getCountTime(){
-		var dd = new Date().getTime();
-		
-		if(dd > targetTime)
-		{
-			stopCountTime();
-			return;
-		}
-		var countTime = (dd - targetTime) / 1000; 
-		var myS = -(Math.floor(countTime%1000*10)/10);
-		$('.time').text(myS.toFixed(1));	
-	}
-
-	function stopCountTime(){
-		$('.time').text("00:0");	
-		$("#start").show("slow");
-		AudiencePoint.reset();
-		sseAudience.close();
-		clearInterval(countInterval);
-	}
 	
 	//	
 	//点数の初期表示設定
@@ -332,8 +301,9 @@ $(function(){
 		    success:function(data)
 		    {
 			    AudiencePoint.resetAll();
-			    
-			    AudiencePoint = new Point("audiencePoint");
+			    clearInterval(setAudience);
+			    sseAudience.close();			    
+			    AudiencePoint = new Point("audience");
 		    }
 	    });
 	    
