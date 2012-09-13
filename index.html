@@ -22,12 +22,14 @@
   <!--コンテンツ --> 
    <div class="content container">
 	<div class="box">
-		<div class="box_header">No</div>
-    	<div class="point">
-			<div class="poll  row-fluid">
-				<div class="span6" style="float:left;">	
+		<!-- 投票 -->
+		<div class="step">		
+			<div class="point">
+			<div class="point_header"></div>
+			<div class="poll row-fluid">
+				<div class="span6" style="float:left;padding-left:20px;">	
 					<div class="slider_point" ></div>
-					<span id="slider_submit" class="btn btn-success btn-large" ><i class="icon-upload"></i>GO!</span>
+					<div class="btn btn-success btn-large slider_submit" style="margin: 20px 0px;"><i class="icon-upload"></i>GO!</div>
 				</div>
 				<div class="span6">
 					<div  class="slider_bar" >
@@ -35,20 +37,23 @@
 					</div>
 				</div>
 			</div>
-    		<div class="loader"><img src="./images/loader.gif" id="loder_img"/></div>
-			<div class="result" >Thanks!!<br/><br/>
-				<span id="retry" class="btn btn-success btn-large" ><span class="upload"></span>もう一度</span>
+			<div class="loader"><img src="./images/loader.gif" class="loder_img"/></div>
+			<div class="result">Thanks!!<br/><br/>
+				<span class="btn btn-success btn-large retry" ><span class="upload"></span>もう一度</span>
+			</div>
 			</div>
 		</div>
-		<div class="tab" >
-			<ul class="tab_list">
-				<li id="t1">1</li>
-				<li id="t2">2</li>
-				<li id="t3">3</li>
-			</ul>
+		<!--　タブ　-->
+		<div class="tab row-fluid">
+			<div class="span12">
+				<div class="prev"><div class="prev_arrow"></div></div>
+				<div class="tab_selected"><p class="tab_number" style="padding-top:10px;">1</p></div>
+				<div class="next" ><div class="next_arrow"></div></div>
+			</div>
 		</div>
 	</div> 
   </div>
+
  <script src="./jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
  <script src="./jquery/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
  <script src="./index.js" type="text/javascript" charset="utf-8"></script>

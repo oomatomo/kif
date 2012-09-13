@@ -1,127 +1,116 @@
 $(function(){
  
-  	//データ送信イベント
-	$("#slider_submit").click(function(){
-	    
-		var p_height = $(".poll").height() ;	
-		$(".loader").height(p_height);
-		$("#loder_img").css("padding-top",p_height / 2 +"px");
-		$.Deferred(function(dfd) {
-		dfd.pipe(function() { return $(".poll").fadeOut("slow"); })
-		   .pipe(function() { return $(".loader").fadeIn("slow"); })
-		   .pipe(function() { return postPoint()})
-		}).resolve();	 	
-		
-	 	$(".poll").promise().then(function(){
-	 		$(".loader").fadeIn("slow").promise().then(postPoint);
-	 	});
-
-	});
-
-	//データ送信メソッド
-	function postPoint()
+	//カテゴリの取得
+	function getCategory()
 	{
-		var point = $(".slider_point").text().charAt(0);	 	
-		//データ送信
-	    var category = $("li[class='selected']").text();
-		//結果の文字を中央に配置
-		var all_height = $(".poll").height()/2; 
-		$(".result").css("padding-top",all_height).height(all_height);
-	    	    
-	    $.ajax({
-			type:"POST",
-			url:"./server/pointGet.php",
-			data:
-			{
-			    "point":point,"category":category
-			},
-			success:function(){
-				$.cookie(category,true);
-				//結果表示
-				$.Deferred(function(dfd) {
-				dfd.pipe(function() { return $(".loader").fadeOut("slow"); })
-				   .pipe(function() { return $(".result").fadeIn("slow"); })
-				}).resolve();
-			}
-		});
-
+		
 	}
-
-	$("#retry").click(function(){
-		//スラーダー表示
-		var category = $("li[class='selected']").text();
-		$.cookie(category,false);
-		$.Deferred(function(dfd) {
-		dfd.pipe(function() { return $(".result").fadeOut("slow"); })
-		   .pipe(function() { return $(".poll").fadeIn("slow"); })
-		}).resolve();		
-	});
-
-	//tab 選択時のクラス
-	var tabclass = "selected";
-	var tab_list = $(".tab_list li");
+	var count_category = 8;
 	
-	tab_list.each(function()
+	//
+	//投票画面をカテゴリごとに一つにまとめる
+	//
+	var point_width = $(".point").width();
+	var withs ;
+	
+	function setUpPoint()
 	{
-		//要素数
-		var index = $(this).index();		
-		if(index == 0)
+		//カテゴリ分の幅
+		var poll_content = $(".point");
+		$(".point").remove();
+		for(var i = 0 ; i < count_category ; i++)
 		{
-			$(".box_header").text("No.1");
-			$(this).addClass(tabclass);
+			poll_content.children(".point_header").text("No"+(i+1));	
+			poll_content.clone(true).addClass("p"+(i+1)).appendTo(".step");
 		}
-	});	
-
-	tab_list.bind("click",function()
+		$(".step").width(point_width*count_category);
+		$(".point").css("float","left").width(point_width);
+		$(".p1").addClass("selected");
+	}
+	
+	setUpPoint();
+	//
+	//投票画面の調整
+	//
+	function setPoll(number)
 	{
-		var check = $(this).hasClass(tabclass);
+		var selected = $(".selected");
 		
-		if(check) return;
-		
-		tab_list.each(function()
-		{
-	        $(this).removeClass(tabclass);
-	    });
-		
-		$(this).addClass(tabclass);
-		var number = $(this).text();
-				
 		$(".box_header").text("No."+number);
-		//クッキーの情報を取得
-		var exitCheck = $.cookie(number);
+		$(".tab_number").text(number);
+		
+		//クッキーの情報を取得 Stringへ変換
+		var exitCheck = $.cookie(""+number);
 		
 		//結果の文字を中央に配置
 		var all_height = $(".poll").height() / 2; 
 		$(".result").css("padding-top",all_height);
 		
 		//クッキーの情報元に結果を表示
-		if(exitCheck)
+		var poll = selected.find(".poll");
+		var result = selected.find(".result");
+		if(exitCheck == "true")
 		{
-			$(".poll").css("display","none");			
-			$(".result").height(all_height).fadeIn();	
+			poll.css("display","none");			
+			result.height(all_height).fadeIn();	
 		}
 		else
 		{
-			$(".result").css("display","none");			
-			$(".poll").fadeIn();
+			result.css("display","none");			
+			poll.fadeIn();
 		}
 
-	});
-	
-	
-	//スライダー
-	$("body").live("pageshow",setSlider());
+	}
+		
+	//
+	//次へのボタン
+	//
+	$(".next").bind("click",function()
+	{
+		var number = Number($(".tab_number").text())+1;
+		if(number > count_category) return;
 
-	$( window ).resize(function(){
-	/* 行ないたい処理 */
+		$(".p"+(number-1)).removeClass("selected");
+		$(".p"+number).addClass("selected");
+		
+		setPoll(number);
+		
+		$(".step").animate({
+            'marginLeft': "-" + point_width * ( number -1)+ 'px'
+        });			
+
 	});
+	
+	//
+	//戻るボタン
+	//
+	$(".prev").bind("click",function(){
+
+		var number = Number($(".tab_number").text())-1;
+		if(number < 1) return;
+		
+		$(".p"+(number+1)).removeClass("selected");
+		$(".p"+number).addClass("selected");
+		setPoll(number);
+
+		$(".step").animate({
+            'marginLeft': "-" + point_width * ( number -1)+ 'px'
+        });			
+		
+	})
+	
+	
+    //
+    //スライダーの表示
+    //
+	$("body").live("pageshow",setSlider());
 	
 	function setSlider(){
 		//スライダー関係のオブジェクト
 		//得点の高さ
 	    var slider = $(".slider_bar");
 	    var slider_point  = $(".slider_point");
-	    var slider_submit = $("#slider_submit");
+	    var slider_submit = $(".slider_submit");
         var poll_height = $(".poll").height();
         slider_point.css("margin",poll_height/10 +"px 0");
         slider_submit.css("margin",poll_height/10+"px 0");
@@ -150,12 +139,12 @@ $(function(){
                                   
 		/* タッチの開始、マウスボタンを押したとき */
 		'touchstart mousedown': function(e) {
-                 e.preventDefault();
-                          
-                 // 開始位置 X,Y 座標を覚えておく
-                 this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
-                 //タッチフラグ                                     
-                 this.touched = true;
+            e.preventDefault();
+                      
+            // 開始位置 X,Y 座標を覚えておく
+            this.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
+            //タッチフラグ                                     
+            this.touched = true;
 
         },
         
@@ -163,36 +152,36 @@ $(function(){
 			if (!this.touched) {
             	return;
             }
-                e.preventDefault();
-                //if(!e.pageY) e = e.touches[0];
-			    var slider = $(".slider_bar");
-			    var slider_point  = $(".slider_point");
-			    var slider_submit = $("#slider_submit");
-			    //スライダーのボタン
-			    var slider_btn = slider.find(".slider_btn");
-			    //ボタンの高さ
-			    var size = slider_btn.height();
-			    //スライダーのトップ　ボタンの半分が基準になる
-			    var top = - size / 2;
-			    //スライダーのボトム　
-			    var height = slider.height() + top ;
-        
-                e.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
-                //現在のY座標
-                var y = e.pageY -( slider.offset().top + size / 2 );
-                if(y < top)
-                { 
-                	y = top;
-                }
-                else if(y > height)
-                {
-                	y = height;
-	            }
-                //input.css("top", y + "px");
-                slider_btn.get(0).style.top = y + "px";
-                value = 100 - Math.floor(100 * (y - top) / (height - top));
-                value = Math.round(value / 25);
-                slider_point.text(value+"点");                
+            e.preventDefault();
+            //if(!e.pageY) e = e.touches[0];
+            var selected = $(".selected");
+		    var slider_bar = selected.find(".slider_bar");
+		    var slider_point  = selected.find(".slider_point");
+		    var slider_submit = selected.find(".slider_submit");
+		    //スライダーのボタン
+		    var slider_btn = slider_bar.find(".slider_btn");
+		    //ボタンの高さ
+		    var size = slider_btn.height();
+		    //スライダーのトップ　ボタンの半分が基準になる
+		    var top = - size / 2;
+		    //スライダーのボトム　
+		    var height = slider_bar.height() + top ;
+    
+            e.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
+            //現在のY座標
+            var y = e.pageY -( slider_bar.offset().top + size / 2 );
+            if(y < top)
+            { 
+            	y = top;
+            }
+            else if(y > height)
+            {
+            	y = height;
+            }
+            slider_btn.get(0).style.top = y + "px";
+            value = 100 - Math.floor(100 * (y - top) / (height - top));
+            value = Math.round(value / 25);
+            slider_point.text(value+"点");                
 		},
 		
 		'touchend mouseup': function(e){
@@ -203,5 +192,80 @@ $(function(){
             this.touched = false;		
         },
 	});
+	
+	//
+	//タブ内の高さの統一
+	//
+	function setTab()
+	{
+		var tab_height = $(".tab").height();
+		var tab_weight = $(".tab").width() / 4;
+		if(tab_height < 35) tab_height = 35 ;		
+		//タブ内の全ての高さを調整
+		$(".next , .prev , .tab_selected").height(tab_height).width(tab_weight);
+		
+	}
+	
+	setTab();
+
+	//データ送信イベント
+	$(".slider_submit").bind("click",function()
+	{
+		var selected = $(".selected");
+		var poll = selected.find(".poll");	    
+		var p_height = poll.height() ;	
+		var loader = selected.find(".loader");
+		loader.height(p_height);
+		selected.find(".loder_img").css("padding-top",p_height / 2 +"px");
+		$.Deferred(function(dfd) {
+		dfd.pipe(function() { return poll.fadeOut("slow"); })
+		   .pipe(function() { return loader.fadeIn("slow"); })
+		   .pipe(function() { return postPoint()})
+		}).resolve();	 	
+
+	});
+
+	//データ送信メソッド
+	function postPoint()
+	{
+		var selected = $(".selected");
+		var point = selected.find(".slider_point").text().charAt(0);	 	
+		//データ送信
+	    var category = $(".tab_number").text();		
+		//結果の文字を中央に配置
+		var all_height = selected.find(".poll").height() / 2; 
+		selected.find(".result").css("padding-top",all_height).height(all_height);
+	    	    
+	    $.ajax({
+			type:"POST",
+			url:"./server/pointGet.php",
+			data:
+			{
+			    "point":point,"category":category
+			},
+			success:function(){
+				$.cookie(category,true);
+				//結果表示
+				$.Deferred(function(dfd) {
+				dfd.pipe(function() { return selected.find(".loader").fadeOut("slow"); })
+				   .pipe(function() { return selected.find(".result").fadeIn("slow"); })
+				}).resolve();
+			}
+		});
+
+	}
+
+	$(".retry").bind("click",function()
+	{
+		//スラーダー表示
+		var category = $(".tab_number").text();
+		$.cookie(category,false);
+		$.Deferred(function(dfd) {
+		dfd.pipe(function() { return $(".result").fadeOut("slow"); })
+		   .pipe(function() { return $(".poll").fadeIn("slow"); })
+		}).resolve();		
+	});
+
+
 });						
 
