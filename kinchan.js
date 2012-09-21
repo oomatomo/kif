@@ -55,7 +55,7 @@ $(function(){
 				this.downPoint();			    
 		    }
 		     
-			if(this.currentPoint>=15)
+			if(this.currentPoint >= 15)
 			{
 				this.resultfile = "fanfale";
 				this.color = "red";
@@ -101,27 +101,39 @@ $(function(){
 		this.checkSpeed = function()
 		{
 			var diff = this.sumPoint - this.currentPoint;
+			
+			var now = this.currentPoint;
+			
 			if(diff > 3)
 			{
-				this.settime = Math.floor( Math.random() * 600);
+				if(now >=15)
+				{
+					this.settime = Math.floor( Math.random() * 300);
+				}
+				else if(now >=10)
+				{
+					this.settime = Math.floor( Math.random() * 400);
+				}
+				else if(now >=5)
+				{
+					this.settime = Math.floor( Math.random() * 500);
+				}
+				else
+				{
+					this.settime = Math.floor( Math.random() * 700);
+				}
 			}
-			else if(diff == 2)
-			{
-				this.settime = Math.floor( Math.random() * 2000);
-			}
-			/*
-			else
+			else if(diff == 1)
 			{
 				if(this.currentPoint >=15)
 				{
-					this.settime = 900;
+					this.settime = 500;
 				}
-				else if(this.currentPoint >10)
+				else
 				{
 					this.settime = 700;
 				}
 			}
-			*/
 		},
 		
 		//
@@ -216,15 +228,6 @@ $(function(){
 	//--------------------------------------------------
 	//会場用
 	//
-	//初期選択を①に設定
-	$.ajax({
-		type:"POST",
-		url:"./server/InsertContent.php",
-		data:
-		{
-		    "content":1
-	    },
-    });
     
     //初期化する場合は以下の３つを解放する
 	var AudiencePoint = new Point("audience");
@@ -267,7 +270,6 @@ $(function(){
 	//
 	// SSE
 	//
-	//会場用SSE	
 	var sseAudience;
 	
 	function startSseAudience()
@@ -288,15 +290,39 @@ $(function(){
 	}
 	
 	//
-	//カウントダウン
+	//SSE起動
 	//
-	var targetTime;
-	var countInterval;
 	$('#start').click(function()
 	{
-		//SSE
-		initAudience = setInterval(initAudiencePoint,100);
-		startSseAudience();
+		var status = $(this).text();
+		if(status == "start")
+		{
+			var content = $("select.content option:selected").val();
+			$.ajax({
+				type:"POST",
+				url:"./server/CategorySet.php",
+				data:
+				{
+				    "content":content
+				},
+				success:function(data)
+				{
+					initAudience = setInterval(initAudiencePoint,100);
+					startSseAudience();
+			    }
+			});
+			
+			$(this).text("stop");					
+
+		}
+		else 
+		{
+			$(this).text("start");
+			AudiencePoint.resetAll();
+			clearInterval(setAudience);
+			sseAudience.close();			    
+			AudiencePoint = new Point("audience");
+		}
 				
 	});
 	
@@ -312,13 +338,14 @@ $(function(){
 	//カテゴリセレクトボックス
 	//
 	function initSelect(){
+		var dt;
 		$.ajax({
 			type:"GET",
 			dataType: "json",
-	        url: "./server/Content.php",
+	        url: "./server/ContentGet.php",
 	        success: function(data) 
 	        {
-				var dt =data;
+				dt =data;
 				for(var i =0 ; i<dt.length ; i++ )
 				{
 					//IE error
@@ -332,7 +359,7 @@ $(function(){
 	
 	//
 	//カテゴリごとの設定
-	//
+	/*
 	$("select.content").change(function()
 	{
 		
@@ -355,6 +382,7 @@ $(function(){
 	    });
 	    
 	});
+	*/
 
 });
 

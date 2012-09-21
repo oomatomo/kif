@@ -34,13 +34,18 @@ body
 	position: relative;
 	background: #84d5d2;
 	border: 8px solid #c2e1f5;
-	padding:20px 20px 0 20px;
+	padding:20px;
 	/*position setting*/
-	max-width:280px;	
+	max-width:300px;	
 	margin: 0 auto;	
 	border-radius:50px;
 	/*得点の部分を隠すため*/
     overflow-x:hidden;
+    box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
+			inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+			/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, 
+			/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+
 }
 
 .point_header
@@ -56,7 +61,7 @@ body
 /*--------point-----------------*/
 .step
 {
-	overflow: hidden;
+	overflow:hidden;
 }
 .point
 {
@@ -74,31 +79,34 @@ body
 .result
 {
 	font-family:"corki";
-	font-size:3em;
+	font-size:2.5em;
 	font-weight:"bold";
 	display:none;
 }
 
-#submit
+.retry
 {
-	margin:20px 0 30px 0;
-	
-}
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
+				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, 
+				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
 
+}
 /*--------tab------------------*/
 .tab
 {
-	padding: 10px 0;
+	list-style: none;
 }
 
 .tab_selected
 {
 	float:left;
 	position:relative;
-	margin:0 20px;
+	margin:0 10px;
 	display:block;
 	color:#777;
-	font-size1.5em;
+	font-size:1.5em;
+	/*
 	border-radius:5px;
 	border-right:1px solid #fff;
     border-left:1px solid #fff;
@@ -121,7 +129,7 @@ body
 	        rgb(227,227,227) 55%,
 	        rgb(240,240,240) 78%
     );
-    
+    */
 
 }
 .selected
@@ -134,11 +142,21 @@ body
 {
     position:relative;
     width:25px;
-    margin:auto;
-    background: -moz-linear-gradient(top,  #ff6666 0%, #ffff33 50%, #66ff66 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff6666), color-stop(50%,#ffff33), color-stop(100%,#66ff66)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #ff6666 0%,#ffff33 50%,#66ff66 100%); /* Chrome10+,Safari5.1+ */
+    margin-left: 50%;
+    background-color: #fbfff8;
+    border: 5px solid #E6F5DC;
+    border-radius: 20px;
+    box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
+    			inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #5390C6 0 .1em 3px, #336999 0 .3em 1px, 
+    			/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+}
 
+.slider_active
+{
+    background-color: #80C4FF;
+    border: 5px solid #80C4FF;
+    border-radius: 20px;
 }
 
 .slider_btn
@@ -153,8 +171,19 @@ body
     border-radius: 30px;
     width: 45px;
     height: 45px;
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
+				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, 
+				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px
 }
 
+.slider_submit
+{
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
+				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, 
+				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+}
 /*---------------------------*/
 .upload
 {
@@ -188,12 +217,16 @@ body
 /*---------------------------*/
 .prev
 {
-	margin-left: 10px;
+	margin-left: 5px;
 	float: left;
 	border-right-color: #555;
 	background-color:#444;
     background:#f0f0f0;
     border-radius: 20px;
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
+				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, 
+				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px
 }
 
 .next
@@ -203,6 +236,10 @@ body
 	background-color:#444;
     background:#f0f0f0;
     border-radius: 20px;    
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
+				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, 
+				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px
 }
 
 .prev_arrow{

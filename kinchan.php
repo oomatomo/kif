@@ -11,9 +11,16 @@
 <title>採点</title>
 </head>
 <body>
+	
+	<?php
+		//セッションでカテゴリを調整する
+		session_start();
+		$_SESSION["category"] = 1;
+	?>
+	
 	<!-- ヘッダー -->
    	<div class="navbar">
-     	<div class="navbar-inner">
+     	<div class="navbar-inner header">
 	 		<div class="container">
 				<div class="header_title" >欽ちゃんシステム</div>
      		</div>

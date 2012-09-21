@@ -1,5 +1,6 @@
 <?php
 
+  //セッション変数を変更する
   if($_SERVER["REQUEST_METHOD"] != "POST"){
 	return;
   }
@@ -11,13 +12,7 @@
   $content = $_POST['content'];
   $content = mb_convert_encoding($content,"UTF-8");
     
-  //DB設定  
-  mysql_connect("localhost","kin","kin");
-  // DBを選択する
-  mysql_select_db("kif");
-
-  $sql=sprintf("insert into Current (number) values ('%d')",$content);
-  $rs = mysql_query($sql);
-
-
+  session_start();
+  $_SESSION["category"] = $content;
+  
 ?>

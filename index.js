@@ -1,34 +1,63 @@
 $(function(){
  
+	var categoryArray = new Array();
+	var count_category=0;
+	var dt;
 	//カテゴリの取得
-	function getCategory()
-	{
-		
-	}
-	var count_category = 8;
+	$.ajax({
+		type:"GET",
+		dataType: "json",
+        url: "./server/ContentGet.php",
+        success: function(data) 
+        {
+			dt =data;
+			for(var i =0 ; i < dt.length ; i++ )
+			{
+				categoryArray[i] = dt[i].content;	
+			}
+			count_category =dt.length;
+			setUpPoint();
+		}
+	});
 	
 	//
 	//投票画面をカテゴリごとに一つにまとめる
 	//
 	var point_width = $(".point").width();
-	var withs ;
-	
+
 	function setUpPoint()
 	{
 		//カテゴリ分の幅
 		var poll_content = $(".point");
+		var poll_width = $('.poll').width();
 		$(".point").remove();
 		for(var i = 0 ; i < count_category ; i++)
 		{
-			poll_content.children(".point_header").text("No"+(i+1));	
+			poll_content.children(".point_header").text("No"+(i+1)+"ー"+categoryArray[i]);	
 			poll_content.clone(true).addClass("p"+(i+1)).appendTo(".step");
 		}
 		$(".step").width(point_width*count_category);
 		$(".point").css("float","left").width(point_width);
 		$(".p1").addClass("selected");
-	}
+		$('.slider').width(poll_width/2);
 	
-	setUpPoint();
+
+	}
+		
+	//
+	//タブ内の高さの統一
+	//
+	var tab_height = $(".tab").height();
+	var tab_weight = $(".tab").width() / 4;
+	if(tab_height < 35) tab_height = 35 ;		
+	//タブ内の全ての高さを調整
+	$(".next , .prev , .tab_selected").height(tab_height).width(tab_weight);
+	
+	//
+	//
+	//
+		
+	//--------------------------------------------------------------------------------
 	//
 	//投票画面の調整
 	//
@@ -61,7 +90,6 @@ $(function(){
 		}
 
 	}
-		
 	//
 	//次へのボタン
 	//
@@ -103,12 +131,17 @@ $(function(){
     //
     //スライダーの表示
     //
-	$("body").live("pageshow",setSlider());
+	$("body").live("pagebeforeshow",setSlider());
 	
+	var size;
+    var top ;
+    var height;
+
 	function setSlider(){
 		//スライダー関係のオブジェクト
 		//得点の高さ
 	    var slider = $(".slider_bar");
+	    var slider_active = $(".slider_active");
 	    var slider_point  = $(".slider_point");
 	    var slider_submit = $(".slider_submit");
         var poll_height = $(".poll").height();
@@ -120,22 +153,28 @@ $(function(){
         //スライダーのボタン
         var slider_btn = slider.find(".slider_btn");
         //ボタンの高さ
-        var size = slider_btn.height();
+        size = slider_btn.height();
         //スライダーのトップ　ボタンの半分が基準になる
-        var top = - size / 2;
+        top = - size / 2;
         //スライダーのボトム　
-        var height = slider.height() + top ;
+        height = slider.height() + top ;
         
         // 初期位置
-        slider_btn.css("top", (height - top) * 0.5 + top + "px");
+        var slider_position = (height - top) * 0.5 + top;
+        
+        slider_active.css("margin-top",slider_position*1.1 + "px");
+        slider_active.css("height", (height - slider_position ) * 1.07 +  "px");
+        
+        slider_btn.css("top", slider_position + "px");
         slider_point.text("2点");
         
     }
     
+    //スマフォ or PC
 	var isTouch = ('ontouchstart' in window);
     var dragging = false;
     
-	$('.slider_btn').bind({
+	$('.slider_btn').live({
                                   
 		/* タッチの開始、マウスボタンを押したとき */
 		'touchstart mousedown': function(e) {
@@ -156,17 +195,12 @@ $(function(){
             //if(!e.pageY) e = e.touches[0];
             var selected = $(".selected");
 		    var slider_bar = selected.find(".slider_bar");
+		    var slider_active = selected.find(".slider_active");
 		    var slider_point  = selected.find(".slider_point");
 		    var slider_submit = selected.find(".slider_submit");
 		    //スライダーのボタン
 		    var slider_btn = slider_bar.find(".slider_btn");
-		    //ボタンの高さ
-		    var size = slider_btn.height();
-		    //スライダーのトップ　ボタンの半分が基準になる
-		    var top = - size / 2;
-		    //スライダーのボトム　
-		    var height = slider_bar.height() + top ;
-    
+		    //スライダーのトップ　ボタンの半分が基準になる		   
             e.pageY = (isTouch ? event.changedTouches[0].pageY : e.pageY);
             //現在のY座標
             var y = e.pageY -( slider_bar.offset().top + size / 2 );
@@ -178,7 +212,12 @@ $(function(){
             {
             	y = height;
             }
+            
             slider_btn.get(0).style.top = y + "px";
+            slider_active.css("margin-top", y *1.1 + "px");
+            slider_active.css("height", ( height - y ) * 1.07 + "px");
+            
+            //得点の設定
             value = 100 - Math.floor(100 * (y - top) / (height - top));
             value = Math.round(value / 25);
             slider_point.text(value+"点");                
@@ -192,24 +231,9 @@ $(function(){
             this.touched = false;		
         },
 	});
-	
-	//
-	//タブ内の高さの統一
-	//
-	function setTab()
-	{
-		var tab_height = $(".tab").height();
-		var tab_weight = $(".tab").width() / 4;
-		if(tab_height < 35) tab_height = 35 ;		
-		//タブ内の全ての高さを調整
-		$(".next , .prev , .tab_selected").height(tab_height).width(tab_weight);
-		
-	}
-	
-	setTab();
 
 	//データ送信イベント
-	$(".slider_submit").bind("click",function()
+	$(".slider_submit").live("click",function()
 	{
 		var selected = $(".selected");
 		var poll = selected.find(".poll");	    
@@ -255,7 +279,7 @@ $(function(){
 
 	}
 
-	$(".retry").bind("click",function()
+	$(".retry").live("click",function()
 	{
 		//スラーダー表示
 		var category = $(".tab_number").text();
@@ -266,6 +290,7 @@ $(function(){
 		}).resolve();		
 	});
 
+	//
 
 });						
 

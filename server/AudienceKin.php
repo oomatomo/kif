@@ -10,16 +10,10 @@ mysql_select_db("kif");
 //再接続時間
 echo 'retry:1000'.PHP_EOL.PHP_EOL;
 
-//選択しているカテゴリ取得
-$current =1;
-$sql = "select number from Current order by id desc limit 1";
-$rs = mysql_query($sql);
-if (mysql_num_rows($rs)) {
-   	while ($row = mysql_fetch_assoc($rs)) {
-   	$current= $row['number'];	
-	} 
-}
 //カテゴリを出力
+session_start();
+$current = $_SESSION["category"];
+
 echo 'data:{ "category":'.$current.',"user":['.PHP_EOL;
 
 //登録したユーザの取得
