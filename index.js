@@ -23,11 +23,12 @@ $(function(){
 	//
 	//投票画面をカテゴリごとに一つにまとめる
 	//
-	var point_width = $(".point").width();
+	var point_width=$(".point").width();;
 
 	function setUpPoint()
 	{
 		//カテゴリ分の幅
+		var point_width = $(".point").width();
 		var poll_content = $(".point");
 		var poll_width = $('.poll').width();
 		$(".point").remove();
@@ -48,8 +49,8 @@ $(function(){
 	//タブ内の高さの統一
 	//
 	var tab_height = $(".tab").height();
-	var tab_weight = $(".tab").width() / 4;
-	if(tab_height < 35) tab_height = 35 ;		
+	var tab_weight = $(".tab").width() / 3;
+	if(tab_height < 35) tab_height = 35 ;
 	//タブ内の全ての高さを調整
 	$(".next , .prev , .tab_selected").height(tab_height).width(tab_weight);
 	
@@ -81,7 +82,8 @@ $(function(){
 		if(exitCheck == "true")
 		{
 			poll.css("display","none");			
-			result.height(all_height).fadeIn();	
+			result.height(all_height);
+			result.fadeIn();	
 		}
 		else
 		{
@@ -177,7 +179,7 @@ $(function(){
 	$('.slider_btn').live({
                                   
 		/* タッチの開始、マウスボタンを押したとき */
-		'touchstart mousedown': function(e) {
+		'touchstart mousedown MozTouchDown': function(e) {
             e.preventDefault();
                       
             // 開始位置 X,Y 座標を覚えておく
@@ -187,7 +189,7 @@ $(function(){
 
         },
         
-        'touchmove mousemove': function(e) {
+        'touchmove mousemove MozTouchMove': function(e) {
 			if (!this.touched) {
             	return;
             }
@@ -223,7 +225,7 @@ $(function(){
             slider_point.text(value+"点");                
 		},
 		
-		'touchend mouseup': function(e){
+		'touchend mouseup MozTouchUp': function(e){
 			if (!this.touched) {
             	return;
             }         
@@ -289,8 +291,6 @@ $(function(){
 		   .pipe(function() { return $(".poll").fadeIn("slow"); })
 		}).resolve();		
 	});
-
-	//
 
 });						
 

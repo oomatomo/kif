@@ -36,15 +36,22 @@ body
 	border: 8px solid #c2e1f5;
 	padding:20px;
 	/*position setting*/
-	max-width:300px;	
+	min-width: 250px;
+	max-width: 500px;	
 	margin: 0 auto;	
 	border-radius:50px;
 	/*得点の部分を隠すため*/
     overflow-x:hidden;
-    box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
-			inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
-			/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, 
-			/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    -moz-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    -webkit-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    -o-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    -ms-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
 
 }
 
@@ -86,10 +93,16 @@ body
 
 .retry
 {
-	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
-				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
-				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, 
-				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-moz-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-webkit-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-o-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-ms-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
 
 }
 /*--------tab------------------*/
@@ -146,10 +159,16 @@ body
     background-color: #fbfff8;
     border: 5px solid #E6F5DC;
     border-radius: 20px;
-    box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
-    			inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
-    			/* inner shadow */ #5390C6 0 .1em 3px, #336999 0 .3em 1px, 
-    			/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #5390C6 0 .1em 3px, #336999 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    -moz-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #5390C6 0 .1em 3px, #336999 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    -webkit-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #5390C6 0 .1em 3px, #336999 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    -o-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #5390C6 0 .1em 3px, #336999 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+    -ms-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+    			/* inner shadow */ #5390C6 0 .1em 3px, #336999 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
 }
 
 .slider_active
@@ -164,25 +183,42 @@ body
     left: -10px;
     position:absolute;
     display:block;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999), color-stop(50%,#bbb), color-stop(100%,#999)); /* Chrome,Safari4+ */
-    background: -moz-linear-gradient(top,  #999 0%, #bbb 50%, #999 100%); /* FF3.6+ */
-    background: -webkit-linear-gradient(top,  #999 0%,#bbb 50%,#999 100%); /* Chrome10+,Safari5.1+ */
     border: none;
     border-radius: 30px;
     width: 45px;
     height: 45px;
-	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
-				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
-				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, 
-				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px
+    /*背景*/
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999), color-stop(50%,#bbb), color-stop(100%,#999)); /* Chrome,Safari4+ */
+    background: -moz-linear-gradient(top,  #999 0%, #bbb 50%, #999 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(top,  #999 0%,#bbb 50%,#999 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #999 0%,#bbb 50%,#999 100%); /*Opera*/
+    
+    /*box-shadow*/
+    box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-moz-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-webkit-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-o-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-ms-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	
 }
 
 .slider_submit
 {
-	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
-				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
-				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, 
-				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-moz-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-webkit-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-o-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-ms-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #6BAD1F 0 .1em 3px, #508217 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
 }
 /*---------------------------*/
 .upload
@@ -196,6 +232,7 @@ body
 	border-radius: 22px;
 	-moz-border-radius: 22px;
 	-webkit-border-radius: 22px;
+	-o-border-radius: 22px;
 	-ms-border-radius: 22px
 }
 
@@ -218,28 +255,42 @@ body
 .prev
 {
 	margin-left: 5px;
+	max-width: 60px;
 	float: left;
 	border-right-color: #555;
 	background-color:#444;
     background:#f0f0f0;
     border-radius: 20px;
-	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
-				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
-				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, 
-				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-moz-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-webkit-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-o-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-ms-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
 }
 
 .next
 {
+	max-width: 60px;
 	float: left;
 	border-left-color: #555;
 	background-color:#444;
     background:#f0f0f0;
     border-radius: 20px;    
-	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, 
-				inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
-				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, 
-				/* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-moz-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-webkit-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-o-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
+	-ms-box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em, 
+				/* inner shadow */ #999 0 .1em 3px, #737373 0 .3em 1px, /* color border */ rgba(0, 0, 0, 0.2) 0 .5em 5px;
 }
 
 .prev_arrow{
@@ -265,6 +316,7 @@ body
 	border-radius: 0 2px 2px 0;
 	-moz-border-radius: 0 2px 2px 0;
 	-webkit-border-radius: 0 2px 2px 0;
+	-o-border-radius: 0 2px 2px 0;
 	-ms-border-radius: 0 2px 2px 0;
 }
 
@@ -292,5 +344,6 @@ body
 	border-radius: 2px 0 0 2px;
 	-moz-border-radius: 2px 0 0 2px;
 	-webkit-border-radius: 2px 0 0 2px;
+	-o-border-radius: 2px 0 0 2px;
 	-ms-border-radius: 2px 0 0 2px
 }
