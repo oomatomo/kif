@@ -106,7 +106,8 @@ $(function(){
 		setPoll(number);
 		
 		$(".step").animate({
-            'marginLeft': "-" + point_width * ( number -1)+ 'px'
+            'marginLeft': "-" + point_width * ( number -1)+ 'px',
+            duration: 500
         });			
 
 	});
@@ -124,7 +125,8 @@ $(function(){
 		setPoll(number);
 
 		$(".step").animate({
-            'marginLeft': "-" + point_width * ( number -1)+ 'px'
+            'marginLeft': "-" + point_width * ( number -1)+ 'px',
+            duration: 500
         });			
 		
 	})

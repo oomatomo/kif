@@ -68,6 +68,11 @@
 						<!-- usteream-->
 						<select class="content"></select>
 						<span class="btn btn-large" id ="start" >start</span>
+						<span class="btn btn-large" id="add">データ追加</span>
+						<div class="dbset" style="display:none">
+							<input type="number" class="number"/>
+							<input type="text" class="name"/>
+						</div>
 						<div>
 							<div class="audienceCount"></div>
 						</div>
@@ -77,7 +82,9 @@
 		</div>
 	</div>
     <script src="./jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./kinchan.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./init.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./point.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./kinchanDB.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
 

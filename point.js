@@ -120,7 +120,7 @@ $(function(){
 				}
 				else
 				{
-					this.settime = Math.floor( Math.random() * 700);
+					this.settime = Math.floor( Math.random() * 800);
 				}
 			}
 			else if(diff == 1)
@@ -145,6 +145,8 @@ $(function(){
 			for(; i > this.sumPoint ; i--)
 			{
 				$('ul#'+ this.targetPoint +' li#l'+i).children().removeClass("yellow red");
+				this.playDownBGM();
+				
 			}
 			this.currentPoint = i;
 		},
@@ -205,6 +207,10 @@ $(function(){
 			$("body").append('<embed id="point" src="./bgm/'+bgm+'.wav" autostart="true" hidden="true" loop="false">');
 		},
 		
+		this.playDownBGM = function()
+		{
+			$("body").append('<embed id="point" src="./bgm/down.wav" autostart="true" hidden="true" loop="false">');				
+		},
 		//
 		//結果BGMをならす
 		//
@@ -311,7 +317,6 @@ $(function(){
 					startSseAudience();
 			    }
 			});
-			
 			$(this).text("stop");					
 
 		}
@@ -326,63 +331,6 @@ $(function(){
 				
 	});
 	
-	//	
-	//点数の初期表示設定
-	//
-	$('li ').each(function(){ 
-		$(this).children().addClass("def");
-		$(this).children().addClass("gray");
-	});
-
-	//
-	//カテゴリセレクトボックス
-	//
-	function initSelect(){
-		var dt;
-		$.ajax({
-			type:"GET",
-			dataType: "json",
-	        url: "./server/ContentGet.php",
-	        success: function(data) 
-	        {
-				dt =data;
-				for(var i =0 ; i<dt.length ; i++ )
-				{
-					//IE error
-					$('select.content').append($('<option>').attr({ value:dt[i].number }).text(dt[i].number +"-"+dt[i].content));	
-				}
-			}
-		});
-	}
-	//実行 
-	initSelect();
-	
-	//
-	//カテゴリごとの設定
-	/*
-	$("select.content").change(function()
-	{
-		
-		var content = $("select.content option:selected").val();
-		
-		$.ajax({
-			type:"POST",
-			url:"./server/InsertContent.php",
-			data:
-			{
-			    "content":content
-		    },
-		    success:function(data)
-		    {
-			    AudiencePoint.resetAll();
-			    clearInterval(setAudience);
-			    sseAudience.close();			    
-			    AudiencePoint = new Point("audience");
-		    }
-	    });
-	    
-	});
-	*/
 
 });
 
