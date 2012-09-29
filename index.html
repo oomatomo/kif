@@ -23,33 +23,34 @@
    <div class="content container">
 	<div class="box">
 		<!-- 投票 -->
-		<div class="step">		
+		<div id="step">		
 			<div class="point">
-				<div class="point_header"></div>
+				<!--  発表のタイトル -->
+				<div class="point_header">No<span class="point_number"></span>--<span class="point_user"></span></div>
+				<!-- 投票内容 -->
 				<div class="poll">
-					<div class="" style="float:left;padding-left:20px;">	
-						<div class="slider_point" ></div>
-						<div class="btn btn-success btn-large slider_submit" style="margin: 20px 0px;"><i class="icon-upload"></i>GO!</div>
+					<div class="slider_set" style="float:left;padding-left:20px;">	
+						<div ><span class="slider_point" ></span>点</div>
+						<div class="slider_submit" ><img id='go_button' src="./images/go.png" /></div>
 					</div>
 					<div class="slider" style="float:left;margin:auto;">
 						<div  class="slider_bar" >
 							<div class="slider_active">
-								<div class='slider_btn'></div>
+								<div id='slider_btn' class='slider_btn'></div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="loader"><img src="./images/loader.gif" class="loder_img"/></div>
-				<div class="result">Thanks<br/><br/>
-					<span class="btn btn-success btn-large retry" ><span class="upload"></span>もう一度</span>
+				<div class="result">Thanks
+					<img class="retry" src="./images/retry.png"/>
 				</div>
 			</div>
 		</div>
 		<!--　タブ　-->
 		<ul class="tab ">
-			<li class="prev"><div class="prev_arrow"></div></li>
-			<li class="tab_selected" ><p class="tab_number" style="padding-top:10px;display: none;">1</p></li>
-			<li class="next" ><div class="next_arrow"></div></li>
+			<li id="prev"><img id="next_arrow" src="./images/prev.png" /></li>
+			<li id="next"><img id="prev_arrow" src="./images/next.png" /></li>
 		</ul>
 	</div> 
   </div>

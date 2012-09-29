@@ -34,13 +34,14 @@ $(function(){
 		$(".point").remove();
 		for(var i = 0 ; i < count_category ; i++)
 		{
-			poll_content.children(".point_header").text("No"+(i+1)+"ー"+categoryArray[i]);	
-			poll_content.clone(true).addClass("p"+(i+1)).appendTo(".step");
+			poll_content.find(".point_number").text(i+1);
+			poll_content.find(".point_user").text(categoryArray[i]);	
+			poll_content.clone(true).attr('id', 'p'+(i+1)).appendTo("#step");
 		}
-		$(".step").width(point_width*count_category);
+		$("#step").width(point_width*count_category);
 		$(".point").css("float","left").width(point_width);
-		$(".p1").addClass("selected");
-		$('.slider').width(poll_width/2);
+		$("#p1").addClass("selected");
+		$('.slider').width(poll_width / 2);
 	
 
 	}
@@ -48,16 +49,10 @@ $(function(){
 	//
 	//タブ内の高さの統一
 	//
-	var tab_height = $(".tab").height();
-	var tab_weight = $(".tab").width() / 3;
-	if(tab_height < 35) tab_height = 35 ;
+	var tab_weight = $(".tab").width() / 2 ;
 	//タブ内の全ての高さを調整
-	$(".next , .prev , .tab_selected").height(tab_height).width(tab_weight);
+	$("#next , #prev ").width(tab_weight);
 	
-	//
-	//
-	//
-		
 	//--------------------------------------------------------------------------------
 	//
 	//投票画面の調整
@@ -65,9 +60,6 @@ $(function(){
 	function setPoll(number)
 	{
 		var selected = $(".selected");
-		
-		$(".box_header").text("No."+number);
-		$(".tab_number").text(number);
 		
 		//クッキーの情報を取得 Stringへ変換
 		var exitCheck = $.cookie(""+number);
@@ -95,18 +87,18 @@ $(function(){
 	//
 	//次へのボタン
 	//
-	$(".next").bind("click",function()
+	$("#next").bind("click",function()
 	{
-		var number = Number($(".tab_number").text())+1;
+		var number = Number($(".selected").find(".point_number").text())+1;
 		if(number > count_category) return;
 
-		$(".p"+(number-1)).removeClass("selected");
-		$(".p"+number).addClass("selected");
+		$("#p"+(number-1)).removeClass("selected");
+		$("#p"+number).addClass("selected");
 		
 		setPoll(number);
 		
-		$(".step").animate({
-            'marginLeft': "-" + point_width * ( number -1)+ 'px',
+		$("#step").animate({
+            'marginLeft': "-" + point_width * ( number - 1 )+ 'px',
             duration: 500
         });			
 
@@ -115,17 +107,18 @@ $(function(){
 	//
 	//戻るボタン
 	//
-	$(".prev").bind("click",function(){
+	$("#prev").bind("click",function(){
 
-		var number = Number($(".tab_number").text())-1;
+		var number = Number($(".selected").find(".point_number").text()) -1;
+		
 		if(number < 1) return;
 		
-		$(".p"+(number+1)).removeClass("selected");
-		$(".p"+number).addClass("selected");
+		$("#p"+(number+1)).removeClass("selected");
+		$("#p"+number).addClass("selected");
 		setPoll(number);
 
-		$(".step").animate({
-            'marginLeft': "-" + point_width * ( number -1)+ 'px',
+		$("#step").animate({
+            'marginLeft': "-" + point_width * ( number - 1)+ 'px',
             duration: 500
         });			
 		
@@ -170,7 +163,7 @@ $(function(){
         slider_active.css("height", (height - slider_position ) * 1.07 +  "px");
         
         slider_btn.css("top", slider_position + "px");
-        slider_point.text("2点");
+        slider_point.text("2");
         
     }
     
@@ -224,7 +217,7 @@ $(function(){
             //得点の設定
             value = 100 - Math.floor(100 * (y - top) / (height - top));
             value = Math.round(value / 25);
-            slider_point.text(value+"点");                
+            slider_point.text(value);                
 		},
 		
 		'touchend mouseup MozTouchUp': function(e){
@@ -259,7 +252,7 @@ $(function(){
 		var selected = $(".selected");
 		var point = selected.find(".slider_point").text().charAt(0);	 	
 		//データ送信
-	    var category = $(".tab_number").text();		
+	    var category = $(".point_number").text();		
 		//結果の文字を中央に配置
 		var all_height = selected.find(".poll").height() / 2; 
 		selected.find(".result").css("padding-top",all_height).height(all_height);
@@ -286,7 +279,7 @@ $(function(){
 	$(".retry").live("click",function()
 	{
 		//スラーダー表示
-		var category = $(".tab_number").text();
+		var category = $(".point_number").text();
 		$.cookie(category,false);
 		$.Deferred(function(dfd) {
 		dfd.pipe(function() { return $(".result").fadeOut("slow"); })
