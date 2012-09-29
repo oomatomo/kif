@@ -41,9 +41,8 @@ $(function(){
 		$("#step").width(point_width*count_category);
 		$(".point").css("float","left").width(point_width);
 		$("#p1").addClass("selected");
-		$('.slider').width(poll_width / 2);
+		$('.slider').width(poll_width / 3);
 	
-
 	}
 		
 	//
