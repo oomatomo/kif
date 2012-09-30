@@ -47,50 +47,37 @@ div#container
 	overflow:hidden;
 }
 
-.time
-{
-	padding:10%;
-	color:#000000;
-	font-size:5em;
-	font-weight:bolder;
-	font-family: "FOT-シャドウ Std B";
-	margin: 5%;
-}
-
-.judge , .audience
+.audience
 {
 	border: 2px solid #DDD;
 	border-radius: 5px;
 	box-shadow: 0 3px 3px 2px rgba(0,0,0,0.42);
 	padding: 10px;
-}
-.judge
-{
-	background-color: #BEDCEE;
-}
-.audience
-{
 	background-color: #DCEAF4;
 }
 
-.result
+/*
+ *タブでのスタートストップ
+ */
+#start
 {
-	color: #6d797c;
-	min-height: 100px;
-	border:dashed;
-	padding: 5%;
-	margin: 5%;
+	padding: 10px;	
+	border-radius: 5em 2em / 5em 2em;
+	font-size:2em;	
 }
-.result_content
+#start.blue
 {
-	font-size: 5em;
-	margin: 5%;
-	padding-top: 10%;
+	background-color: #80C4FF;
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em,
+				#5390C6 0 .1em 3px, #336999 0 .3em 1px, rgba(0, 0, 0, 0.2) 0 .5em 5px;
 }
-.Conutdown
+#start.red
 {
-	
+	background-color: #FF80AA;
+	box-shadow: inset rgba(255, 254, 255, 0.6) 0 0.3em .3em, inset rgba(0, 0, 0, 0.15) 0 -0.1em .3em,
+				#D92662 0 .1em 3px, #B8144B 0 .3em 1px, rgba(0, 0, 0, 0.2) 0 .5em 5px;
 }
+
 /*
  *　得点
  */
@@ -145,13 +132,12 @@ ul.point li
 
 .yellow{
 	/*background: #FFFFFF;*/
-	/* Mozilla Firefox / 
+	/* Mozilla Firefox */ 
 	background-image: -moz-radial-gradient(center, ellipse closest-side, #efe813 0%, #EFEA60 100%);
-	/* Webkit (Safari/Chrome 10) / 
+	/* Webkit (Safari/Chrome 10) */ 
 	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0,#efe813), color-stop(1, #EFEA60));
-	/* Webkit (Chrome 11+) / 
+	/* Webkit (Chrome 11+) */ 
 	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #efe813 0%, #EFEA60 100%);
-	*/
 	/* Webkit (Safari/Chrome 10) */ 
 	background-image: -webkit-gradient(radial, center center, 0, center center, 448, color-stop(0, #EFC34A), color-stop(1, #FFFAB8));
 	/* Webkit (Chrome 11+) */ 
@@ -170,8 +156,41 @@ ul.point li
 	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #FFFFFF 0%, #EF5858 100%);
 	color:#000000;
 }
+/*
+	合計得点など
+*/
 
-.sum{
+.audienceCount
+{
 	font-size:5em;	
 }
 
+/*
+	ランキング
+*/
+
+#rank_table
+{
+	text-align: left;
+	margin-top: 50px;
+	font-size: 3em;
+}
+
+.rank_number
+{
+	float: left;
+	color: rgba(0,0,0,0.6);
+	text-shadow:2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
+}
+
+.rank_name
+{
+	float: left;
+	padding-left: 20px;
+	margin: 0 10%;
+}
+
+.rank_ave
+{
+	float: left;
+}

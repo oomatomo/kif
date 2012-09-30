@@ -7,7 +7,7 @@ $(function(){
 	$.ajax({
 		type:"GET",
 		dataType: "json",
-        url: "./server/ContentGet.php",
+        url: "./server/CategoryGet.php",
         success: function(data) 
         {
 			dt =data;
@@ -251,7 +251,7 @@ $(function(){
 		var selected = $(".selected");
 		var point = selected.find(".slider_point").text().charAt(0);	 	
 		//データ送信
-	    var category = $(".point_number").text();		
+	    var category = selected.find(".point_number").text();		
 		//結果の文字を中央に配置
 		var all_height = selected.find(".poll").height() / 2; 
 		selected.find(".result").css("padding-top",all_height).height(all_height);

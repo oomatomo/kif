@@ -27,64 +27,84 @@
 	 	</div>
    	</div>
   	<!--コンテンツ --> 
-	<div id="container">
-		<div class="container-fluid">	
-			<div class="row-fluid">
-				<!--
-				<select class="content"></select>
-				<span class="btn btn-large" id ="start" >start</span>
-				-->
-			</div>
-			<div class="row-fluid">
-			<div class="span4">				
-			</div>
-			<div class="span8 audience">
-				<div class="row-fluid">
-					<div class="span3">
-						<ul id='audiencePoint' class="point">
-							<li id='l20' ><div>20</div></li>
-							<li id='l19' ><div>19</div></li>
-							<li id='l18' ><div>18</div></li>
-							<li id='l17' ><div>17</div></li>
-							<li id='l16' ><div>16</div></li>
-							<li id='l15' ><div>15</div></li>
-							<li id='l14' ><div>14</div></li>
-							<li id='l13' ><div>13</div></li>
-							<li id='l12' ><div>12</div></li>
-							<li id='l11' ><div>11</div></li>
-							<li id='l10' ><div>10</div></li>
-							<li id='l9' ><div >9</div></li>
-							<li id='l8' ><div >8</div></li>
-							<li id='l7' ><div >7</div></li>
-							<li id='l6' ><div >6</div></li>
-							<li id='l5' ><div >5</div></li>
-							<li id='l4' ><div >4</div></li>
-							<li id='l3' ><div >3</div></li>
-							<li id='l2' ><div >2</div></li>
-							<li id='l1' ><div >1</div></li>
-						</ul>
-					</div>
-					<div class="span8">
-						<!-- usteream-->
-						<select class="content"></select>
-						<span class="btn btn-large" id ="start" >start</span>
-						<span class="btn btn-large" id="add">データ追加</span>
-						<div class="dbset" style="display:none">
-							<input type="number" class="number"/>
-							<input type="text" class="name"/>
+	<div class="container-fluid">	
+		<!-- タブの部分 -->
+		<div class="tabbable tabs-right">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#Point" data-toggle="tab">投票</a></li>
+				<li class=""><a href="#Rank" data-toggle="tab">ランキング</a></li>
+				<li class=""><a href="#Set" data-toggle="tab">設定</a></li>
+				<li class=""><div id ="start" class="blue">start</div></li>
+			</ul>
+			<!-- tab content-->
+			<div class="tab-content">
+				<div id="Point" class="tab-pane active">
+					<div class="row-fluid">
+						<div class="span4">				
+							<ul id='audiencePoint' class="point">
+								<li id='l20' ><div>20</div></li>
+								<li id='l19' ><div>19</div></li>
+								<li id='l18' ><div>18</div></li>
+								<li id='l17' ><div>17</div></li>
+								<li id='l16' ><div>16</div></li>
+								<li id='l15' ><div>15</div></li>
+								<li id='l14' ><div>14</div></li>
+								<li id='l13' ><div>13</div></li>
+								<li id='l12' ><div>12</div></li>
+								<li id='l11' ><div>11</div></li>
+								<li id='l10' ><div>10</div></li>
+								<li id='l9' ><div >9</div></li>
+								<li id='l8' ><div >8</div></li>
+								<li id='l7' ><div >7</div></li>
+								<li id='l6' ><div >6</div></li>
+								<li id='l5' ><div >5</div></li>
+								<li id='l4' ><div >4</div></li>
+								<li id='l3' ><div >3</div></li>
+								<li id='l2' ><div >2</div></li>
+								<li id='l1' ><div >1</div></li>
+							</ul>
 						</div>
-						<div>
-							<div class="audienceCount"></div>
+						<div class="span8 audience">
+							<div style="margin:20px;">参加者<span  class="audienceCount" >0</span>人</div>
+							<iframe src="http://www.ustream.tv/embed/12170443" width="700" height="512" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>
 						</div>
 					</div>
-				</div>		
+				</div>
+				<!-- ランキングページ -->
+				<div id="Rank" class="tab-pane">
+					<table id="rank_table" width="100%">
+						<tr><td id="rank1"><div class="rank_number">1st</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>
+						<tr><td id="rank2"><div class="rank_number">2sd</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>
+						<tr><td id="rank3"><div class="rank_number">3rd</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>
+						<tr><td id="rank4"><div class="rank_number">4th</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>
+						<tr><td id="rank5"><div class="rank_number">5th</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>					
+					</table>
+				</div>
+				<!-- 設定 -->
+				<div id="Set" class="tab-pane">
+					<table class="table table-striped">
+						<tr><th>発表者</th><td><select class="content" style="font-size:1.5em;"></select></td></tr>
+						<tr><th>追加</th>
+							<td><span class="btn btn-large" id="add">データ追加</span><td>
+							<td><span  class="dbset" style="display:none">
+								<input type="number" id="Category_number" />
+								<input type="text" id="Category_content" />
+								<span class="btn btn-large btn-info" id="addDB">登録</span>
+								<span id="Category_result"></span>
+							</span></td>
+						</td></tr>
+					</table>
+					
+				</div>
+			<!-- tab content-->
 			</div>
 		</div>
 	</div>
     <script src="./jquery/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./init.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./point.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./kinchanDB.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./kinchanPoint.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./kinchanRank.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./kinchanSet.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
 

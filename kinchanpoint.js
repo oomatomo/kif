@@ -227,6 +227,7 @@ $(function(){
 			this.resetPoint();
 			$("embed#point").remove();
 			$("embed#result").remove();
+			$("embed#set").remove();
 			//$("."+this.targetSum).text("0点");
 		}
 	}
@@ -291,7 +292,7 @@ $(function(){
 			AudiencePoint.setSumPoint(sum);
 
 			//$(".audienceSum").text(use.sum+"点");
-			$(".audienceCount").text(use.cnt+"人");
+			$(".audienceCount").text(use.cnt);
 		}
 	}
 	
@@ -317,16 +318,16 @@ $(function(){
 					startSseAudience();
 			    }
 			});
-			$(this).text("stop");					
+			$(this).text("stop").removeClass('blue').addClass('red');					
 
 		}
 		else 
 		{
-			$(this).text("start");
 			AudiencePoint.resetAll();
 			clearInterval(setAudience);
 			sseAudience.close();			    
 			AudiencePoint = new Point("audience");
+			$(this).text("start").removeClass('red').addClass('blue');
 		}
 				
 	});

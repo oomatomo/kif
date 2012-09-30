@@ -16,7 +16,7 @@ $current = $_SESSION["category"];
 
 echo 'data:{ "category":'.$current.',"user":['.PHP_EOL;
 
-//登録したユーザの取得
+/*登録したユーザの取得
 $sql="select user,point from Kin where time Between (now() - interval 1 second ) And now() and category =".$current;
 
 $rs = mysql_query($sql);
@@ -26,19 +26,20 @@ if (mysql_num_rows($rs)) {
 	echo 'data: {"name":"'.$row['user'].'", "point":"'.$row['point'].'"},'.PHP_EOL;
     } 
 }
+*/
 //調整のため出力
 echo 'data: {"name":"","point":""} ],'.PHP_EOL;
 
 //合計得点
 $sum=0;
 $count=0;
-$sql="select * from Kin where category =".$current;
+$sql="select category ,sum(point) as sum ,count(*) as count from Kin where category =".$current." group by category;";
 
 $rs = mysql_query($sql);
 if (mysql_num_rows($rs)) {
     while ($row = mysql_fetch_assoc($rs)) {
-    	$sum += $row['point'];
-    	$count++;
+    	$sum = $row['sum'];
+    	$count = $row['count'];
     } 
 }
 
