@@ -46,9 +46,9 @@ $(function(){
 			while (data[i].ave > x) i++;
 			while (x > data[j].ave) j--;
 			if (i >= j) break;
-			n = data[i].ave;
-			data[i].ave = data[j].ave;
-			data[j].ave = n;
+			n = data[i];
+			data[i] = data[j];
+			data[j] = n;
 			i++;
 			j--; 
 		}
