@@ -1,16 +1,23 @@
 $(function(){
 	
 	
-	var rank_height = $('body').height() / 10;
+	//ランキング表のレイアウト
+	var rank_height = $('body').height();
 	var rank_width = $('body').width() ;
 		
-	$("#rank_table tr").height(rank_height);
+	$("#rank_table tr").height(rank_height / 6);
 	
 	for(var i = 1 ; i < 6 ;i++)
 	{
 		$("#rank"+i +" .rank_number").css("margin-left",(rank_width / 20 * i)+"px");
+		$("#rank"+i).children().css("width",(rank_width / 10)+"px");	
 	}
 	
+	//項目のレイアウト
+	$("#rank_head_number").width($("#rank1 .rank_number").width());
+	$("#rank_head_name").width($("#rank1 .rank_name").width());
+	$("#rank_head_ave").width($("#rank1 .rank_ave").width());
+	$("#rank_head_cnt").width($("#rank1 .rank_cnt").width());
 	//
 	//ランキング画面のデータ取得
 	//
@@ -64,7 +71,8 @@ $(function(){
 		for(var i = 0 ;i < 5 ; i++)
 		{
 			$("#rank"+(i+1)).find(".rank_name").text(data[i].name);
-			$("#rank"+(i+1)).find(".rank_ave").text(Math.round(data[i].ave));
+			$("#rank"+(i+1)).find(".rank_ave").text(Math.round(data[i].ave)+"%");
+			$("#rank"+(i+1)).find(".rank_cnt").text(Math.round(data[i].count)+"人");
 		}
 	}
 });

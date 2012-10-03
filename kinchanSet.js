@@ -36,11 +36,21 @@ $(function(){
 	$('#add').click(function()
 	{
 		$('.dbset').toggle();
-		$("#Category_result").text("");		
+		$("#Category_result").text("");
+		//maxの番号取得
+		$.ajax({
+			type:"GET",
+			dataType: "json",
+	        url: "./server/CategoryMax.php",
+	        success: function(data) 
+	        {
+	        	$('#Category_number').val( Number(data) + 1);
+			}
+		});
+			
 	});
 	
 	$('#addDB').click(function(){
-		/*
 		var number = $('#Category_number').val();
 		var content = $('#Category_content').val();
 		$.ajax({
@@ -59,7 +69,6 @@ $(function(){
 				initSelect();
 		    }
 		});
-		*/
 		$("#Category_result").text("機能しないようにしている");
 	})
 

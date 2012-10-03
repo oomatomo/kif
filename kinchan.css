@@ -156,6 +156,7 @@ ul.point li
 	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #FFFFFF 0%, #EF5858 100%);
 	color:#000000;
 }
+
 /*
 	合計得点など
 */
@@ -168,12 +169,19 @@ ul.point li
 /*
 	ランキング
 */
+#rank_header li
+{
+	margin-left: 5%;
+}
 
 #rank_table
 {
 	text-align: left;
-	margin-top: 50px;
-	font-size: 3em;
+}
+
+#rank_table tr
+{
+	font-family: 'Helvetica Neue',Helvetica,sans-serif;
 }
 
 .rank_number
@@ -183,14 +191,9 @@ ul.point li
 	text-shadow:2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 }
 
-.rank_name
+.rank_name,.rank_ave , .rank_cnt
 {
 	float: left;
-	padding-left: 20px;
-	margin: 0 10%;
+	margin-left:5%;
 }
 
-.rank_ave
-{
-	float: left;
-}

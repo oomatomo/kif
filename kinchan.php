@@ -11,13 +11,11 @@
 <title>採点</title>
 </head>
 <body>
-	
 	<?php
 		//セッションでカテゴリを調整する
 		session_start();
 		$_SESSION["category"] = 1;
-	?>
-	
+	?>	
 	<!-- ヘッダー -->
    	<div class="navbar">
      	<div class="navbar-inner header">
@@ -72,12 +70,28 @@
 				</div>
 				<!-- ランキングページ -->
 				<div id="Rank" class="tab-pane">
+					<ul id="rank_header" style="font-size:2em;list-style: none;">
+						<li style="float:left;" id="rank_head_number">Rank</li>
+						<li style="float:left;" id="rank_head_name">Name</li>
+						<li style="float:left;" id="rank_head_ave">得点率</li>
+						<li style="float:left;" id="rank_head_cnt">参加人数</li>
+					</ul>
 					<table id="rank_table" width="100%">
-						<tr><td id="rank1"><div class="rank_number">1st</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>
-						<tr><td id="rank2"><div class="rank_number">2sd</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>
-						<tr><td id="rank3"><div class="rank_number">3rd</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>
-						<tr><td id="rank4"><div class="rank_number">4th</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>
-						<tr><td id="rank5"><div class="rank_number">5th</div><div class="rank_name"></div><div class="rank_ave"></div>%</td></tr>					
+						<tr style="font-size:5em;"><td id="rank1">
+							<div class="rank_number">1st</div><div class="rank_name"></div><div class="rank_ave"></div><div class="rank_cnt"></div>
+						</td></tr>
+						<tr style="font-size:4.5em;"><td id="rank2">
+							<div class="rank_number">2sd</div><div class="rank_name"></div><div class="rank_ave"></div><div class="rank_cnt"></div>
+						</td></tr>
+						<tr style="font-size:4em;"><td id="rank3">
+							<div class="rank_number">3rd</div><div class="rank_name"></div><div class="rank_ave"></div><div class="rank_cnt"></div>
+						</td></tr>
+						<tr style="font-size:3.8em;"><td id="rank4">
+							<div class="rank_number">4th</div><div class="rank_name"></div><div class="rank_ave"></div><div class="rank_cnt"></div>
+							</td></tr>
+						<tr style="font-size:3.5em;"><td id="rank5">
+							<div class="rank_number">5th</div><div class="rank_name"></div><div class="rank_ave"></div><div class="rank_cnt"></div>
+						</td></tr>					
 					</table>
 				</div>
 				<!-- 設定 -->
@@ -94,7 +108,6 @@
 							</span></td>
 						</td></tr>
 					</table>
-					
 				</div>
 			<!-- tab content-->
 			</div>
