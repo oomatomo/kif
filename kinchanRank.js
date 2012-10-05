@@ -9,8 +9,9 @@ $(function(){
 	
 	for(var i = 1 ; i < 6 ;i++)
 	{
-		$("#rank"+i +" .rank_number").css("margin-left",(rank_width / 20 * i)+"px");
-		$("#rank"+i).children().css("width",(rank_width / 10)+"px");	
+		$("#rank"+i +" .rank_number").css("margin-left",(rank_width / 40 * i)+"px");
+		$("#rank"+i).children().css("width",(rank_width / 10)+"px");
+		$("#rank"+i+" .rank_name").css("width",(rank_width / 4)+"px");	
 	}
 	
 	//項目のレイアウト
