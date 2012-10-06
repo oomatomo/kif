@@ -85,12 +85,12 @@ ul.point
 {
 	list-style: none;
 	width:100%;
-	max-width: 100px;
+	max-width: 200px;
 	margin:auto;
 	/*height:80%;
 	/*margin:10%;*/
-	background-color:#abd6e0;
-	background-color:#EFA907;
+	/*background-color:#abd6e0;
+	background-color:#EFA907;*/
 	padding-top:4px;
 	padding-bottom:4px;
 	border-radius:5px;
@@ -109,6 +109,7 @@ ul.point li
  */
 .def
 {
+	height: 20px;
 	margin-top:1px;
 	padding-top:4px;
 	text-align: center;
@@ -147,13 +148,13 @@ ul.point li
 .red{
 	/*background: #FFFFFF;*/
 	/* Mozilla Firefox */ 
-	background-image: -moz-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #EF5858 100%);
+	background-image: -moz-radial-gradient(center, ellipse closest-side, #FF80AA 0%, #EF5858 100%);
 	/* Opera */ 
-	background-image: -o-radial-gradient(center, ellipse closest-side, #FFFFFF 0%, #EF5858 100%);
+	background-image: -o-radial-gradient(center, ellipse closest-side, #FF80AA 0%, #EF5858 100%);
 	/* Webkit (Safari/Chrome 10) */ 
-	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #FFFFFF), color-stop(1, #EF5858));
+	background-image: -webkit-gradient(radial, center center, 0, center center, 497, color-stop(0, #FF80AA), color-stop(1, #EF5858));
 	/* Webkit (Chrome 11+) */ 
-	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #FFFFFF 0%, #EF5858 100%);
+	background-image: -webkit-radial-gradient(center, ellipse farthest-corner, #FF80AA 0%, #EF5858 100%);
 	color:#000000;
 }
 
@@ -163,7 +164,8 @@ ul.point li
 
 .audienceCount
 {
-	font-size:5em;	
+	font-size:5em;
+	text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
 }
 
 /*
@@ -174,6 +176,12 @@ ul.point li
 	margin-left: 5%;
 }
 
+#rank_header .rank_head_ave
+{
+	margin-left:0;
+	height: 60px;
+}
+
 #rank_table
 {
 	text-align: left;
@@ -182,6 +190,7 @@ ul.point li
 #rank_table tr
 {
 	font-family: 'Helvetica Neue',Helvetica,sans-serif;
+	border: whiteSmoke solid 4px;;
 }
 
 .rank_number
@@ -191,9 +200,22 @@ ul.point li
 	text-shadow:2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 }
 
+.rank_name
+{
+	text-shadow: 8px 8px 0 rgba(255,0,180,0.5);
+}
+
+.rank_ave
+{
+	text-shadow: 5px 5px 0px #eee, 7px 7px 0px #707070;
+}
 .rank_name,.rank_ave , .rank_cnt
 {
 	float: left;
 	margin-left:5%;
 }
-
+#Point
+{
+	background-color: black;
+	color: white;
+}

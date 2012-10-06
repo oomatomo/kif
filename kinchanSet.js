@@ -69,7 +69,6 @@ $(function(){
 				initSelect();
 		    }
 		});
-		$("#Category_result").text("機能しないようにしている");
 	})
 
 });

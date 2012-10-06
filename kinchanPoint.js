@@ -42,6 +42,15 @@ $(function(){
 		//
 		this.checkPoint　= function()
 		{
+
+			if(this.currentPoint >= 14)
+			{
+				this.color = "red";
+			}
+			else
+			{
+				this.color = "yellow";
+			}
 			if(this.currentPoint < this.sumPoint)
 			{
 				this.upPoint();
@@ -58,13 +67,13 @@ $(function(){
 			if(this.currentPoint >= 15)
 			{
 				this.resultfile = "fanfale";
-				this.color = "red";
+				//this.color = "red";
 				this.passFlag = true;
 			}
 			else
 			{
 				this.resultfile = "fail";
-				this.color = "yellow";
+				
 				this.passFlag = false;	
 			}
 			
@@ -328,6 +337,7 @@ $(function(){
 			sseAudience.close();			    
 			AudiencePoint = new Point("audience");
 			$(this).text("start").removeClass('red').addClass('blue');
+			$('.audienceCount').text(0);
 		}
 				
 	});

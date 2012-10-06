@@ -18,7 +18,7 @@ $(function(){
 	$("#rank_head_number").width($("#rank1 .rank_number").width());
 	$("#rank_head_name").width($("#rank1 .rank_name").width());
 	$("#rank_head_ave").width($("#rank1 .rank_ave").width());
-	$("#rank_head_cnt").width($("#rank1 .rank_cnt").width());
+	//$("#rank_head_cnt").width($("#rank1 .rank_cnt").width());
 	//
 	//ランキング画面のデータ取得
 	//
