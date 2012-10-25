@@ -210,7 +210,7 @@ body
 	border-bottom-color: #555
 }
 /*------------------------------*/
-#next,#prev
+#next,#prev,#center
 {
 	height: 35px;
 	float: left;

@@ -48,9 +48,10 @@ $(function(){
 	//
 	//タブ内の高さの統一
 	//
-	var tab_weight = $(".tab").width() / 2 ;
+	var tab_weight = $(".tab").width() / 5 ;
 	//タブ内の全ての高さを調整
 	$("#next , #prev ").width(tab_weight);
+	$("#center").width(tab_weight*3);
 	
 	//--------------------------------------------------------------------------------
 	//

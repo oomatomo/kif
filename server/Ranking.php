@@ -19,6 +19,7 @@ echo 'data:{ "point" : ['.PHP_EOL;
 
 if (mysql_num_rows($rs)) {
     while ($row = mysql_fetch_assoc($rs)) {
+    	if($row['name'] == "テスト") continue
 		echo 'data: { "name":"'.$row['name'].'", "sum":"'.$row['sum'].'", "count":"'.$row['count'].'" },'.PHP_EOL;
     } 
 }
