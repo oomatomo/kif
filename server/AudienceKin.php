@@ -11,10 +11,10 @@ mysql_select_db("kif");
 echo 'retry:1000'.PHP_EOL.PHP_EOL;
 
 //カテゴリを出力
-session_start();
-$current = $_SESSION["category"];
+#session_start();
+#$current = $_SESSION["category"];
 
-echo 'data:{ "category":'.$current.',"user":['.PHP_EOL;
+#echo 'data:{ "category":'.$current.',"user":['.PHP_EOL;
 
 /*登録したユーザの取得
 $sql="select user,point from Kin where time Between (now() - interval 1 second ) And now() and category =".$current;
@@ -28,7 +28,7 @@ if (mysql_num_rows($rs)) {
 }
 */
 //調整のため出力
-echo 'data: {"name":"","point":""} ],'.PHP_EOL;
+#echo 'data: {"name":"","point":""} ],'.PHP_EOL;
 
 //合計得点
 $sum=0;
@@ -43,7 +43,7 @@ if (mysql_num_rows($rs)) {
     } 
 }
 
-echo 'data: "sum":'.$sum.',"cnt":'.$count.' }'.PHP_EOL.PHP_EOL;
+echo 'data:{ "sum":'.$sum.',"cnt":'.$count.' }'.PHP_EOL.PHP_EOL;
 
 ob_flush();
 flush();
