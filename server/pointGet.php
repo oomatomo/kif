@@ -1,20 +1,15 @@
 <?php
 
   if($_SERVER["REQUEST_METHOD"] != "POST"){
-	return;
+    return;
   }
   //文字コードutf-8
   header("Content-Type: text/html; charset=UTF-8");
-  //pear
-  require_once('./JSON.php');
-  
+  parse_str(file_get_contents('php://input'), $_POST);
   $point = $_POST['point'];
-  $point = mb_convert_encoding($point,"UTF-8");
-
   $category = $_POST['category'];
-  $category = mb_convert_encoding($category,"UTF-8");
-  
-  //DB設定  
+
+  //DB設定
   mysql_connect("localhost","kin","kin");
   // DBを選択する
   mysql_select_db("kif");
